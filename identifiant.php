@@ -32,8 +32,61 @@
                 $reponse->closeCursor();
             ?>
         </select>
-        
-        
+        <?php
+
+            $utilisateurModifSupp=$cnx->query("SELECT identifiant, motDePasse, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role FROM utilisateur); //Récupération de toute la table note avec nom et prenom
+            $utilisateurModifSupp->setFetchMode(PDO::FETCH_OBJ);
+
+		?>
+        <p>A partir de cette page, vous pouvez modifier ou supprimer des utilisateurs.</p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Mot de Passe</th>
+                    <th>Email</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Date de Naissance</th>
+                    <th>Numéro de Rue</th>
+                    <th>Rue</th>
+                    <th>Ville</th>
+                    <th>Code Postal</th>
+                    <th>Rôle</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php $prodUtilisateurModifSupp=$utilisateurModifSupp->fetch();
+                        while ($prodUtilisateurModifSupp) {
+                    ?>
+                <tr>
+                    <td>
+                        <?php echo utf8_encode($prodUtilisateurModifSupp->nom); ?> </td>
+                    <td>
+                        <?php echo utf8_encode($prodUtilisateurModifSupp->prenom); ?> </td>
+                    <td>
+                        <?php echo utf8_encode($prodUtilisateurModifSupp->ville); ?> </td>
+                    <td>
+                        <?php echo utf8_encode($prodUtilisateurModifSupp->role); ?> </td>
+                    <td>
+
+                        <a href='note.php?action=modifier&id=<?php echo $prodNote->idNote; ?>'><img
+                                src="https://img.icons8.com/color/30/000000/edit.png"></a></td>
+                    <!--Icon pour modifier une ligne du tableau-->
+                    <td>
+                        <a href='note_action.php?action=supprimer&id=<?php echo $prodNote->idNote; ?>'><img
+                                src="https://img.icons8.com/color/30/000000/delete-sign.png"></span></a></td>
+                    <!--Icon pour supprimer une ligne du tableau-->
+                </tr>
+                <?php // lecture du notesuivant
+                        $prodUtilisateurModifSupp=$utilisateurModifSupp->fetch(); }
+                    ?>
+            </tbody>
+        </table>
         
         <h1>Inscription</h1>
 
