@@ -18,8 +18,10 @@
                 die('Erreur : '.$e->getMessage());
             }
         ?>
-		<form class="form" action="validationIdentifiant.php" method="POST">
-			<h1>Inscription</h1>
+
+        <h1>Inscription</h1>
+
+		<form class="form" action="validationIdentifiant.php" method="post">
 			
 			<label id="" for="identifiant">Identifiant</label>
 			<input type="text" name="identifiant" placeholder="Votre identifiant" required>
@@ -51,10 +53,31 @@
             <label id="" for="codepostale">Code Postale</label>
             <input type="text" name="codepostale" placeholder="Votre code postale" required>
 
+            <label id="" for="role">Role</label>
+            <select name="role" required>
+            <option value="1">Administrateur</option>
+            <option value="2">Professeur</option>
+            <option value="3">BDE</option>
+            <option value="4">Elèves</option>
+            <option value="5">Secrétaire</option>
+            </select>
 
-            
-			<input type="submit" value="Modifier">
-			<input type="submit" value="Supprimer">
+            <label id="" for="idformation">Formation</label>
+        <select name=idformation>
+        
+            <?php
+                $reponse = $bdd->query("SELECT * FROM formation");
+                while ($donnees=$reponse->fetch()){
+                    ?>
+                    <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+                    <?php
+                }
+                $reponse->closeCursor();
+            ?>
+        </select>
+
+			<input type="submit" name="ajout" value="Ajouter">
+
 		</form>
 
     </body>
