@@ -10,7 +10,7 @@
             try
             {
             // On se connecte à MySQL
-                $bdd = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', 'root');
+                $cnx = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', 'root');
             }
             catch(Exception $e)
             {
@@ -18,7 +18,23 @@
                 die('Erreur : '.$e->getMessage());
             }
         ?>
-
+        <h1>Modifications et suppressions de comptes</h1>
+        <label id="" for="formation">Formation</label>
+        <select name=formation>
+            
+            <?php
+                $reponse = $cnx->query("SELECT * FROM formation");
+                while ($donnees=$reponse->fetch()){
+                    ?>
+                    <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+                    <?php
+                }
+                $reponse->closeCursor();
+            ?>
+        </select>
+        
+        
+        
         <h1>Inscription</h1>
 
 		<form class="form" action="validationIdentifiant.php" method="post">
@@ -63,18 +79,18 @@
             </select>
 
             <label id="" for="idformation">Formation</label>
-        <select name=idformation>
-        
-            <?php
-                $reponse = $bdd->query("SELECT * FROM formation");
-                while ($donnees=$reponse->fetch()){
-                    ?>
-                    <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
-                    <?php
-                }
-                $reponse->closeCursor();
-            ?>
-        </select>
+            <select name=idformation>
+            
+                <?php
+                    $reponse = $cnx->query("SELECT * FROM formation");
+                    while ($donnees=$reponse->fetch()){
+                        ?>
+                        <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+                        <?php
+                    }
+                    $reponse->closeCursor();
+                ?>
+            </select>
 
 			<input type="submit" name="ajout" value="Ajouter">
 

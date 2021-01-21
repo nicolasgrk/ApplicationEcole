@@ -10,7 +10,7 @@
             try
             {
             // On se connecte à MySQL
-                $bdd = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', 'root');
+                $cnx = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', 'root');
             }
             catch(Exception $e)
             {
@@ -19,7 +19,7 @@
             }
             //echo $_POST['idformation'];
             // préparation de la requête : recherche d'un stage particulier
-            $req_pre = $bdd->prepare("INSERT INTO utilisateur (identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role) 
+            $req_pre = $cnx->prepare("INSERT INTO utilisateur (identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role) 
             VALUES (:identifiant, :motdepasse, :adressemail, :nom, :prenom, :datedenaissance, :numerorue, :rue, :ville, :codepostale, :idformation, :role)");
             // liaison de la variable à la requête préparée
             $req_pre->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
