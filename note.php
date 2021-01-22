@@ -25,7 +25,7 @@ header( 'content-type: text/html; charset=utf-8' );
 <body>
     <!--Header-->
     <!--body-->
-
+ 
 
 <?php
     if (isset ($_GET['action'])) //Si on récupère "action on exécute la suite
@@ -69,8 +69,8 @@ header( 'content-type: text/html; charset=utf-8' );
                         <label id="utilisateur" for="utilisateur">étudiant</label>
                          <select name="utilisateur" id="utilisateur">
                             <option value="">Choisir un étudiant</option>
-<?php 
-                            $reponse = $cnx->query('SELECT nom, prenom, id FROM utilisateur');
+<?php       var_dump($_GET['id']);
+                            $reponse = $cnx->query("SELECT nom, prenom, id FROM utilisateur where utilisateur.id_formation = ".$_GET['id']);
                             while ($donnees = $reponse->fetch()){
 ?>
                             <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['nom'];?> <?php echo $donnees['prenom'];?></option>
@@ -88,16 +88,40 @@ header( 'content-type: text/html; charset=utf-8' );
     }
     else
     {
+?>
+        <h2>Note</h2>
+        
+
+        <form method="post" action="note.php" enctype="multipart/form-data">
+         <select name="formations" id="formations">
+            <option value="">Choisir une formations</option>
+<?php 
+            $reponse = $cnx->query('SELECT id, intituleFormation FROM formation');
+            while ($donnees = $reponse->fetch()){
+?>
+            <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+<?php         $idFormation=  $donnees['id'];
+
+            }
+            $reponse->closeCursor();
+?>
+        </select>
+        <input type="submit" value="Envoyer">
+    </form>
+
+    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur. <a href="note.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter une note</a> </p>
+         
+<?php
+
+
         // affichage lors du clic sur notedans la page index.php
         include("include/_inc_parametres.php");
         include("include/_inc_connexion.php");
-        $noteEleve=$cnx->query("SELECT utilisateur.nom, utilisateur.prenom, matiere, note, utilisateur.id as idUtili, note.id as idNote FROM note, utilisateur where note.id_utilisateur = utilisateur.id"); //Récupération de toute la table note avec nom et prenom
+        $noteEleve=$cnx->query("SELECT utilisateur.nom, utilisateur.prenom, matiere, note, utilisateur.id as idUtili, note.id as idNote FROM note, utilisateur where note.id_utilisateur = utilisateur.id and utilisateur.id_formation = ".$_POST['formations']); //Récupération de toute la table note avec nom et prenom
         $noteEleve->setFetchMode(PDO::FETCH_OBJ);
 ?>
-        <h2>Joueur</h2>
-        <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur.</p>
-        <a href="note.php?action=nouveau">Ajouter une note</a>
-         
+
+
         <table class="table">
             <thead>
                 <tr>
