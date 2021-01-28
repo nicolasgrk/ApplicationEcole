@@ -10,7 +10,7 @@
             try
             {
             // On se connecte à MySQL
-                $cnx = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', 'root');
+                $cnx = new PDO('mysql:host=localhost;dbname=appli_ecole;charset=utf8', 'root', '');
             }
             catch(Exception $e)
             {
@@ -34,7 +34,7 @@
         </select>
         <?php
 
-            $utilisateurModifSupp=$cnx->query("SELECT identifiant, motDePasse, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role FROM utilisateur); //Récupération de toute la table note avec nom et prenom
+            $utilisateurModifSupp=$cnx->query("SELECT identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role FROM utilisateur"); //Récupération de toute la table note avec nom et prenom
             $utilisateurModifSupp->setFetchMode(PDO::FETCH_OBJ);
 
 		?>
@@ -64,25 +64,24 @@
                         while ($prodUtilisateurModifSupp) {
                     ?>
                 <tr>
-                    <td>
-                        <?php echo utf8_encode($prodUtilisateurModifSupp->nom); ?> </td>
-                    <td>
-                        <?php echo utf8_encode($prodUtilisateurModifSupp->prenom); ?> </td>
-                    <td>
-                        <?php echo utf8_encode($prodUtilisateurModifSupp->ville); ?> </td>
-                    <td>
-                        <?php echo utf8_encode($prodUtilisateurModifSupp->role); ?> </td>
-                    <td>
-
-                        <a href='note.php?action=modifier&id=<?php echo $prodNote->idNote; ?>'><img
-                                src="https://img.icons8.com/color/30/000000/edit.png"></a></td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->identifiant); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->motDePasse); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->adresseMail); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->nom); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->prenom); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->dateNaissance); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->numeroRue); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->rue); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->ville); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->codePostale); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->idformation); ?> </td>
+                    <td><?php echo utf8_encode($prodUtilisateurModifSupp->role); ?> </td>
+                    <td><a href='note.php?action=modifier&id=<?php echo $prodNote->idNote; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td>
                     <!--Icon pour modifier une ligne du tableau-->
-                    <td>
-                        <a href='note_action.php?action=supprimer&id=<?php echo $prodNote->idNote; ?>'><img
-                                src="https://img.icons8.com/color/30/000000/delete-sign.png"></span></a></td>
+                    <td><a href='note_action.php?action=supprimer&id=<?php echo $prodNote->idNote; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></span></a></td>
                     <!--Icon pour supprimer une ligne du tableau-->
                 </tr>
-                <?php // lecture du notesuivant
+                <?php // lecture de l'utilisateur suivant
                         $prodUtilisateurModifSupp=$utilisateurModifSupp->fetch(); }
                     ?>
             </tbody>
