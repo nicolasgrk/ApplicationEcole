@@ -199,8 +199,9 @@ header( 'content-type: text/html; charset=utf-8' );
                         </select>
 
                         <label id="" for="idformation">Formation</label>
+
                         <select name=idformation>
-                        
+                        <option value="">Enseignant/secrétaire/Administrateur</option>                        
                             <?php
                                 $reponse = $cnx->query("SELECT * FROM formation");
                                 while ($donnees=$reponse->fetch()){

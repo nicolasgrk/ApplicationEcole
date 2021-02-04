@@ -41,7 +41,9 @@ if (isset ($_GET['action']))
 	}
 	if ($_GET['action'] == 'ajouter')//Si l'action est égale à ajouter alors on fait:
 	{
-
+		if ($_POST['idformation'] === '') {
+			$_POST['idformation'] = null; // or 'NULL' for SQL
+		}
 
 		$req_pre = $cnx->prepare("INSERT INTO utilisateur (identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role) 
 		VALUES (:identifiant, :motdepasse, :adressemail, :nom, :prenom, :datedenaissance, :numerorue, :rue, :ville, :codepostale, :idformation, :role)");
