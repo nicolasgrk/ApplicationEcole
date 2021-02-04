@@ -25,6 +25,19 @@ header( 'content-type: text/html; charset=utf-8' );
 <body>
     <!--Header-->
     <!--body-->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="admin.php">
+            <img src="img/logo.png" >
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            </a>
+        </div>
+    </nav>
  
 
 <?php
@@ -42,115 +55,148 @@ header( 'content-type: text/html; charset=utf-8' );
             //le résultat est récupéré sous forme d'objet
             $utilisateur=$req_pre->fetch(PDO::FETCH_OBJ);
 ?>
-            <h2>Modifier utilisateur</h2>
-            <p>Sur cette page, vous pouvez modifier un utilisateur.</p>
-                <div class="formulaire">                    
-                    <form method="post" action="admin_action.php?action=modifier"> <!--Formulaire pour modifier un joueur-->
-                      <input type="hidden" name="numero" value="<?php echo $utilisateur->id; ?>" />  <!-- numéro du Utilisateur sélectionné caché -->
-                        <input class="input" type="text" name="newIdentifiant" id="identifiant" value='<?php echo utf8_encode($utilisateur->identifiant); ?>' required>
-                        
-                        <label id="" for="identifiant">Identifiant</label>
-                        <input type="text" name="newidentifiant" value='<?php echo utf8_encode($utilisateur->identifiant); ?>' required>
+            <section class="section">
+                <div class="container">  
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered is-5">
+                            <p>Sur cette page, vous pouvez modifier un utilisateur.</p>
+                        </div>
+                    </div>
+                    <article class="columns is-centered">
+                        <div class="column has-text-centered is-4">               
+                            <form method="post" action="admin_action.php?action=modifier" class="box"> <!--Formulaire pour modifier un joueur-->
+                                <input type="hidden" name="numero" value="<?php echo $utilisateur->id; ?>" />  <!-- numéro du Utilisateur sélectionné caché -->
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" class="input" type="text" name="newIdentifiant" id="identifiant" value='<?php echo utf8_encode($utilisateur->identifiant); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">                                
+                                        <input class="input" type="text" name="newprenom" value='<?php echo utf8_encode($utilisateur->prenom); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="text" name="newnom" value='<?php echo utf8_encode($utilisateur->nom); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="date" name="newdatedenaissance"value='<?php echo utf8_encode($utilisateur->dateNaissance); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="email" name="newadressemail" value='<?php echo utf8_encode($utilisateur->adresseMail); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="password" name="newmotdepasse"  value='<?php echo utf8_encode($utilisateur->motDePasse); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">                                         
+                                        <input class="input" type="text" name="newnumerorue" value='<?php echo utf8_encode($utilisateur->numeroRue); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="text" name="newrue" value='<?php echo utf8_encode($utilisateur->rue); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="text" name="newville" value='<?php echo utf8_encode($utilisateur->ville); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control"> 
+                                        <input class="input" type="text" name="newcodepostale" value='<?php echo utf8_encode($utilisateur->codePostale); ?>' required>
+                                        </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Statut</label>
+                                    <div class="select is-rounded">
+                                        <select name="newrole"  required>
+                                            <?php if($utilisateur->role == 1){?>
+                                                    <option value="1">Administrateur</option>
+                                                    <option value="2">Professeur</option>
+                                                    <option value="3">BDE</option>
+                                                    <option value="4">Elèves</option>
+                                                    <option value="5">Secrétaire</option>
+                                                <?php
 
-                        <label id="" for="prenom">Prénom</label>
-                        <input type="text" name="newprenom" value='<?php echo utf8_encode($utilisateur->prenom); ?>' required>
+                                            }elseif($utilisateur->role == 2){
 
-                        <label id="" for="nom">Nom</label>
-                        <input type="text" name="newnom" value='<?php echo utf8_encode($utilisateur->nom); ?>' required>
+                                                ?>
 
-                        <label id="" for="datedenaissance">Date de naissance</label>
-                        <input type="date" name="newdatedenaissance"value='<?php echo utf8_encode($utilisateur->dateNaissance); ?>' required>
+                                                    <option value="2">Professeur</option>
+                                                    <option value="1">Administrateur</option>
+                                                    <option value="3">BDE</option>
+                                                    <option value="4">Elèves</option>
+                                                    <option value="5">Secrétaire</option>
+                                                <?php
 
-                        <label id="" for="adressemail">Email</label>
-                        <input type="email" name="newadressemail" value='<?php echo utf8_encode($utilisateur->adresseMail); ?>' required>
-
-                        <label id="" for="motdepasse">Mot de passe</label>
-                        <input type="password" name="newmotdepasse"  value='<?php echo utf8_encode($utilisateur->motDePasse); ?>' required>
-                        
-                        <label id="" for="numerorue">N°Rue</label>
-                        <input type="text" name="newnumerorue" value='<?php echo utf8_encode($utilisateur->numeroRue); ?>' required>
-
-                        <label id="" for="rue">Rue</label>
-                        <input type="text" name="newrue" value='<?php echo utf8_encode($utilisateur->rue); ?>' required>
-
-                        <label id="" for="ville">Ville</label>
-                        <input type="text" name="newville" value='<?php echo utf8_encode($utilisateur->ville); ?>' required>
-
-                        <label id="" for="codepostale">Code Postale</label>
-                        <input type="text" name="newcodepostale" value='<?php echo utf8_encode($utilisateur->codePostale); ?>' required>
-
-                        <select name="newrole"  required>
-
-                        <?php if($utilisateur->role == 1){?>
-                                <option value="1">Administrateur</option>
-                                <option value="2">Professeur</option>
-                                <option value="3">BDE</option>
-                                <option value="4">Elèves</option>
-                                <option value="5">Secrétaire</option>
-                            <?php
-
-                        }elseif($utilisateur->role == 2){
-
-                            ?>
-
-                                <option value="2">Professeur</option>
-                                <option value="1">Administrateur</option>
-                                <option value="3">BDE</option>
-                                <option value="4">Elèves</option>
-                                <option value="5">Secrétaire</option>
-                            <?php
-
-                        }elseif($utilisateur->role == 3){
-                            
-                            ?>
-                                <option value="3">BDE</option>
-                                <option value="2">Professeur</option>
-                                <option value="1">Administrateur</option>
-                                <option value="4">Elèves</option>
-                                <option value="5">Secrétaire</option>
-                            <?php
-                            
-                        }elseif($utilisateur->role == 4){
-                            ?>
-                                <option value="4">Elèves</option>
-                                <option value="3">BDE</option>
-                                <option value="2">Professeur</option>
-                                <option value="1">Administrateur</option>
-                                <option value="5">Secrétaire</option>
-                            <?php
-                            
-                        }elseif($utilisateur->role == 5){
-                            ?>
-                                <option value="5">Secrétaire</option>
-                                <option value="4">Elèves</option>
-                                <option value="3">BDE</option>
-                                <option value="2">Professeur</option>
-                                <option value="1">Administrateur</option>
-                            <?php
-                        }
-                        
-                        
-                        ?>
-                        </select>
-                        <select name=newidformation required>
-                        <option value=""> Choisir une formation</option>
-                        <?php
-                            $reponse = $cnx->query("SELECT * FROM formation");
-                            while ($donnees=$reponse->fetch()){
-                                ?>
-                                <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
-                                <?php
-                            }
-                            $reponse->closeCursor();
-                        ?>
-                        <option value="">Enseignant/secrétaire/Administrateur</option>
-                    </select>
-                        
-
-
-                        <button type="submit" value="Submit" class="myButton">Soumettre</button><!--Bouton d'envoi-->
-                    </form>
+                                            }elseif($utilisateur->role == 3){
+                                                
+                                                ?>
+                                                    <option value="3">BDE</option>
+                                                    <option value="2">Professeur</option>
+                                                    <option value="1">Administrateur</option>
+                                                    <option value="4">Elèves</option>
+                                                    <option value="5">Secrétaire</option>
+                                                <?php
+                                                
+                                            }elseif($utilisateur->role == 4){
+                                                ?>
+                                                    <option value="4">Elèves</option>
+                                                    <option value="3">BDE</option>
+                                                    <option value="2">Professeur</option>
+                                                    <option value="1">Administrateur</option>
+                                                    <option value="5">Secrétaire</option>
+                                                <?php
+                                                
+                                            }elseif($utilisateur->role == 5){
+                                                ?>
+                                                    <option value="5">Secrétaire</option>
+                                                    <option value="4">Elèves</option>
+                                                    <option value="3">BDE</option>
+                                                    <option value="2">Professeur</option>
+                                                    <option value="1">Administrateur</option>
+                                                <?php
+                                            }
+                                            
+                                            
+                                            ?>
+                                        </select>
+                                        </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Role</label>
+                                    <div class="select is-rounded">
+                                        <select name=newidformation required>
+                                            <option value=""> Choisir une formation</option>
+                                                <?php
+                                                $reponse = $cnx->query("SELECT * FROM formation");
+                                                while ($donnees=$reponse->fetch()){
+                                                ?>
+                                                <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+                                                <?php
+                                                }
+                                                $reponse->closeCursor();
+                                                ?>
+                                            <option value="">Enseignant/secrétaire/Administrateur</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input class="button is-primary" type="submit" value="Envoyer">
+                            </form>
+                        </div>
+                    </article>
                 </div>
+            </section>
 <?php
         }
         if ($_GET['action'] == 'nouveau')//Si l'action est égale à nouveau alors on continue{
@@ -158,62 +204,85 @@ header( 'content-type: text/html; charset=utf-8' );
 ?>
             <section class="section">
                 <div class="container">
-                    <h1 class="title">Ajouter un utilisateur</h1>
-                    <form method="post" action="admin_action.php?action=ajouter" enctype="multipart/form-data">
-                        <h2>Utilisateur</h2>
-                        <label id="" for="identifiant">Identifiant</label>
-                        <input type="text" name="identifiant" placeholder="Votre identifiant" required>
-
-                        <label id="" for="prenom">Prénom</label>
-                        <input type="text" name="prenom" placeholder="Votre prénom" required>
-
-                        <label id="" for="nom">Nom</label>
-                        <input type="text" name="nom" placeholder="Votre nom" required>
-
-                        <label id="" for="datedenaissance">Date de naissance</label>
-                        <input type="date" name="datedenaissance" placeholder="Votre date de naissance" required>
-
-                        <label id="" for="adressemail">Email</label>
-                        <input type="email" name="adressemail" placeholder="Votre email" required>
-
-                        <label id="" for="motdepasse">Mot de passe</label>
-                        <input type="password" name="motdepasse" minlength=8 placeholder="Votre mot de passe" required>
-                        
-                        <label id="" for="numerorue">N°Rue</label>
-                        <input type="text" name="numerorue" placeholder="Numéro de rue" required>
-
-                        <label id="" for="rue">Rue</label>
-                        <input type="text" name="rue" placeholder="Nom de rue" required>
-
-                        <label id="" for="ville">Ville</label>
-                        <input type="text" name="ville" placeholder="Votre ville" required>
-
-                        <label id="" for="codepostale">Code Postale</label>
-                        <input type="text" name="codepostale" placeholder="Votre code postale" required>
-                        <select name="role" required>
-                            <option value="1">Administrateur</option>
-                            <option value="2">Professeur</option>
-                            <option value="3">BDE</option>
-                            <option value="4">Elèves</option>
-                            <option value="5">Secrétaire</option>
-                        </select>
-
-                        <label id="" for="idformation">Formation</label>
-
-                        <select name=idformation>
-                        <option value="">Enseignant/secrétaire/Administrateur</option>                        
-                            <?php
-                                $reponse = $cnx->query("SELECT * FROM formation");
-                                while ($donnees=$reponse->fetch()){
-                                    ?>
-                                    <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
-                                    <?php
-                                }
-                                $reponse->closeCursor();
-                            ?>
-                        </select>
-                        <input type="submit" value="Envoyer">
-                    </form>
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered is-5">
+                            <h1 class="title">Ajouter un utilisateur</h1>    
+                        </div>
+                    </div>
+                    <article class="columns is-centered">
+                        <div class="column has-text-centered is-4">
+                            <form method="post" action="admin_action.php?action=ajouter" enctype="multipart/form-data" class="box">
+                                <div class="field">
+                                    <label id="" for="identifiant">Identifiant</label>
+                                    <input class="input" type="text" name="identifiant" placeholder="Votre identifiant" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="prenom">Prénom</label>
+                                    <input class="input" type="text" name="prenom" placeholder="Votre prénom" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="nom">Nom</label>
+                                    <input class="input" type="text" name="nom" placeholder="Votre nom" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="datedenaissance">Date de naissance</label>
+                                    <input class="input" type="date" name="datedenaissance" placeholder="Votre date de naissance" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="adressemail">Email</label>
+                                    <input class="input" type="email" name="adressemail" placeholder="Votre email" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="motdepasse">Mot de passe</label>
+                                    <input class="input" type="password" name="motdepasse" minlength=8 placeholder="Votre mot de passe" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="numerorue">N°Rue</label>
+                                    <input class="input" type="text" name="numerorue" placeholder="Numéro de rue" required>
+                                </div>
+                                    <div class="field">
+                                    <label id="" for="rue">Rue</label>
+                                <input class="input" type="text" name="rue" placeholder="Nom de rue" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="ville">Ville</label>
+                                    <input class="input" type="text" name="ville" placeholder="Votre ville" required>
+                                </div>
+                                <div class="field">
+                                    <label id="" for="codepostale">Code Postale</label>
+                                    <input class="input" type="text" name="codepostale" placeholder="Votre code postale" required>
+                                </div>
+                                <div class="field">
+                                    <div class="select is-rounded">
+                                        <select name="role" required>
+                                            <option value="1">Administrateur</option>
+                                            <option value="2">Professeur</option>
+                                            <option value="3">BDE</option>
+                                            <option value="4">Elèves</option>
+                                            <option value="5">Secrétaire</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="select is-rounded">
+                                        <select name=idformation>
+                                        <option value="">Enseignant/secrétaire/Administrateur</option>                        
+                                            <?php
+                                                $reponse = $cnx->query("SELECT * FROM formation");
+                                                while ($donnees=$reponse->fetch()){
+                                                    ?>
+                                                    <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+                                                    <?php
+                                                }
+                                                $reponse->closeCursor();
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Envoyer">
+                            </form>
+                        </div>
+                    </article>
                 </div>
              </section>
 <?php
@@ -222,33 +291,34 @@ header( 'content-type: text/html; charset=utf-8' );
     else
     {         
 ?>
-        <h2>utilisateur</h2>
-        
+     <div class="columns is-centered">
+        <div class="column has-text-centered is-5">
+            <div class="select">
+                <form method="post" action="admin.php" enctype="multipart/form-data">
+                    <select name="formations" id="formations" onChange="this.form.submit();">
+                    <option value="">Veuillez choisir une formation</option>
+            <?php 
+                        $reponse = $cnx->query('SELECT id, intituleFormation FROM formation');
+                        while ($donnees = $reponse->fetch()){
+            ?>
+                        <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
+            <?php         $idFormation=  $donnees['id'];
 
-        <form method="post" action="admin.php" enctype="multipart/form-data">
-         <select name="formations" id="formations">
-         <option value="">Enseignant/secrétaire/Administrateur</option>
-<?php 
-            $reponse = $cnx->query('SELECT id, intituleFormation FROM formation');
-            while ($donnees = $reponse->fetch()){
-?>
-            <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
-<?php         $idFormation=  $donnees['id'];
-
-            }
-            $reponse->closeCursor();
-?>
+                        }
+                        $reponse->closeCursor();
+            ?>
 
 
-        </select>
-        <input type="submit" value="Envoyer">
-    </form>
-
-    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur. <a href="admin.php?action=nouveau">Ajouter un utilisateur</a> </p>
-         
+                    </select>
+                    <noscript><input type="submit" value="Envoyer" /></noscript>
+                </form>
+            </div>
+            <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur. <a href="admin.php?action=nouveau">Ajouter un utilisateur</a> </p>
+        </div>
+    </div>
 <?php
 
-
+if(isset($_POST['formations'])){
         // affichage lors du clic sur Utilisateurdans la page index.php
         include("include/_inc_parametres.php");
         include("include/_inc_connexion.php");
@@ -364,11 +434,22 @@ header( 'content-type: text/html; charset=utf-8' );
             </tbody>
         </table>
 <?php
+
     } 
+}else{
+    ?>
+    <section class="section">
+    <div class="container">               
+        <div class="columns is-centered">
+            <div class="column has-text-centered is-5">
+                <p class="title">Veuillez choisir une formation</p>    
+            </div>
+        </div>
+    <?php
+}
 } 
 ?>
 
-        <p id=footer>Wesh le footer</p>
 
 </body><!--Body-->
 </html>
