@@ -187,7 +187,6 @@ header( 'content-type: text/html; charset=utf-8' );
                                                 }
                                                 $reponse->closeCursor();
                                                 ?>
-                                            <option value="">Enseignant/secrétaire/Administrateur</option>
                                         </select>
                                     </div>
                                 </div>
@@ -255,6 +254,7 @@ header( 'content-type: text/html; charset=utf-8' );
                                 <div class="field">
                                     <div class="select is-rounded">
                                         <select name="role" required>
+                                        <option value="">Choisir statut</option>
                                             <option value="1">Administrateur</option>
                                             <option value="2">Professeur</option>
                                             <option value="3">BDE</option>
@@ -265,8 +265,8 @@ header( 'content-type: text/html; charset=utf-8' );
                                 </div>
                                 <div class="field">
                                     <div class="select is-rounded">
-                                        <select name=idformation>
-                                        <option value="">Enseignant/secrétaire/Administrateur</option>                        
+                                        <select name=idformation required>           
+                                        <option value="">Choisir formation</option>           
                                             <?php
                                                 $reponse = $cnx->query("SELECT * FROM formation");
                                                 while ($donnees=$reponse->fetch()){
@@ -323,62 +323,6 @@ if(isset($_POST['formations'])){
         include("include/_inc_parametres.php");
         include("include/_inc_connexion.php");
 
-		if ($_POST['formations'] === '') {
-            $utilisateur=$cnx->query("SELECT identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role,id FROM utilisateur where id_formation is null"); //Récupération de toute la table Utilisateur avec nom et prenom
-            $utilisateur->setFetchMode(PDO::FETCH_OBJ);
-
-            ?>
-
-
-            <table class="table">
-                <thead>
-                <tr>
-                        <th>Identifiant</th>
-                        <th>Mot de Passe</th>
-                        <th>Email</th>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Date de Naissance</th>
-                        <th>Numéro de Rue</th>
-                        <th>Rue</th>
-                        <th>Ville</th>
-                        <th>Code Postal</th>
-                        <th>Rôle</th>
-                        <th>Modifier</th>
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-    <?php 
-                $prodUtilisateur=$utilisateur->fetch();
-                while ($prodUtilisateur) {
-    ?>
-                    <tr>
-                        <td><?php echo utf8_encode($prodUtilisateur->identifiant); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->motDePasse); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->adresseMail); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->nom); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->prenom); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->dateNaissance); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->numeroRue); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->rue); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->ville); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->codePostale); ?> </td>
-                        <td><?php echo utf8_encode($prodUtilisateur->role); ?> </td>
-                        <td><a href='admin.php?action=modifier&id=<?php echo $prodUtilisateur->id; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td>
-                        <!--Icon pour modifier une ligne du tableau-->
-                        <td><a href='admin_action.php?action=supprimer&id=<?php echo $prodUtilisateur->id; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></span></a></td>
-                        <!--Icon pour supprimer une ligne du tableau-->
-                    </tr>
-     <?php 
-                // lecture de la Utilisateur suivant
-                $prodUtilisateur=$utilisateur->fetch(); 
-                }
-    ?>
-                </tbody>
-            </table>
-    <?php
-		}else{
             $utilisateur=$cnx->query("SELECT identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role,id FROM utilisateur where id_formation = ".$_POST['formations']); //Récupération de toute la table Utilisateur avec nom et prenom
             $utilisateur->setFetchMode(PDO::FETCH_OBJ);
             ?>
@@ -435,7 +379,7 @@ if(isset($_POST['formations'])){
         </table>
 <?php
 
-    } 
+    
 }else{
     ?>
     <section class="section">

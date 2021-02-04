@@ -6,14 +6,11 @@ if (isset ($_GET['action']))
 	if ($_GET['action'] == 'modifier')//Si l'action est égale à modifier alors on fait:
 	{
 
-		if ($_POST['newidformation'] === '') {
-			$_POST['newidformation'] = null; // or 'NULL' for SQL
-		}
 		// préparation de la requête : pour modifier les informations de la table
 		$req_pre = $cnx->prepare("UPDATE utilisateur SET identifiant=:identifiant, motDePasse=:motdepasse, adresseMail=:adressemail, nom=:nom, prenom=:prenom, dateNaissance=:datedenaissance, numeroRue=:numerorue, rue=:rue, ville=:ville, codePostale=:codepostale, id_formation=:idformation,role=:role
 								  WHERE id= :id ");
 		// liaison de la variable à la requête préparée
-		$req_pre->bindValue(':identifiant', $_POST['newidentifiant'], PDO::PARAM_STR);
+		$req_pre->bindValue(':identifiant', $_POST['newIdentifiant'], PDO::PARAM_STR);
 		$req_pre->bindValue(':motdepasse', $_POST['newmotdepasse'], PDO::PARAM_STR);
 		$req_pre->bindValue(':adressemail', $_POST['newadressemail'], PDO::PARAM_STR);
 		$req_pre->bindValue(':nom', $_POST['newnom'], PDO::PARAM_STR);
@@ -32,7 +29,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			 <meta http-equiv="refresh" content="0 ; url=admin.php"><!--Rafraichissement/retour de la page joueur-->
+			<meta http-equiv="refresh" content="0 ; url=admin.php"><!-- Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>
@@ -41,9 +38,6 @@ if (isset ($_GET['action']))
 	}
 	if ($_GET['action'] == 'ajouter')//Si l'action est égale à ajouter alors on fait:
 	{
-		if ($_POST['idformation'] === '') {
-			$_POST['idformation'] = null; // or 'NULL' for SQL
-		}
 
 		$req_pre = $cnx->prepare("INSERT INTO utilisateur (identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role) 
 		VALUES (:identifiant, :motdepasse, :adressemail, :nom, :prenom, :datedenaissance, :numerorue, :rue, :ville, :codepostale, :idformation, :role)");
