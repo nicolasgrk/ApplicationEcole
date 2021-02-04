@@ -23,7 +23,7 @@
             VALUES (:identifiant, :motdepasse, :adressemail, :nom, :prenom, :datedenaissance, :numerorue, :rue, :ville, :codepostale, :idformation, :role)");
             // liaison de la variable à la requête préparée
             $req_pre->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
-            $req_pre->bindValue(':motdepasse', $passwordHash, PDO::PARAM_STR);
+            $req_pre->bindValue(':motdepasse', $_POST['motdepasse'], PDO::PARAM_STR);
             $req_pre->bindValue(':adressemail', $_POST['adressemail'], PDO::PARAM_STR);
             $req_pre->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
             $req_pre->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
