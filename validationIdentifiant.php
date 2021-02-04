@@ -35,7 +35,7 @@
             $req_pre->bindValue(':role', $_POST['role'], PDO::PARAM_INT);
             $req_pre->bindValue(':idformation', $_POST['idformation'], PDO::PARAM_INT);
 
-            var_dump($req_pre->execute());
+            $req_pre->execute());
 
         ?>
     </body>

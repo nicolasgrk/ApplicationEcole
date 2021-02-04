@@ -98,6 +98,7 @@ header( 'content-type: text/html; charset=utf-8' );
 <?php 
             $reponse = $cnx->query('SELECT id, intituleFormation FROM formation');
             while ($donnees = $reponse->fetch()){
+              
 ?>
             <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
 <?php         $idFormation=  $donnees['id'];
@@ -108,7 +109,6 @@ header( 'content-type: text/html; charset=utf-8' );
         </select>
         <input type="submit" value="Envoyer">
     </form>
-
     <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur. <a href="note.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter une note</a> </p>
          
 <?php
