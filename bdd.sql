@@ -131,7 +131,7 @@ CREATE TABLE `utilisateur` (
   `rue` varchar(50) NOT NULL,
   `ville` varchar(50) NOT NULL,
   `codePostale` int(11) NOT NULL,
-  `id_formation` int(11) NOT NULL,
+  `id_formation` int(11) DEFAULT NULL,
   `role` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
