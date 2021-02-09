@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 04, 2021 at 10:53 AM
+-- Generation Time: Feb 09, 2021 at 09:37 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.4.2
 
@@ -56,7 +56,8 @@ CREATE TABLE `formation` (
 
 INSERT INTO `formation` (`id`, `intituleFormation`) VALUES
 (1, 'Bachelor 1'),
-(2, 'Bahcelor 2');
+(2, 'Bahcelor 2'),
+(999, 'Personelle');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,8 @@ CREATE TABLE `note` (
 
 INSERT INTO `note` (`id`, `matiere`, `note`, `id_utilisateur`) VALUES
 (12, 'dsqdsqd', '10', 1),
-(13, 'francais', '12', 2);
+(13, 'francais', '12', 2),
+(15, 'dqsdq', '20', 2);
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,12 @@ CREATE TABLE `utilisateur` (
 
 INSERT INTO `utilisateur` (`id`, `identifiant`, `motDePasse`, `adresseMail`, `nom`, `prenom`, `dateNaissance`, `numeroRue`, `rue`, `ville`, `codePostale`, `id_formation`, `role`) VALUES
 (1, 'utilisateur1', 'test', 'nicolasgurak@gmail.com', 'Gurak', 'Nicolas', '1999-09-15', 54, 'rue', 'Pacé', 35740, 1, 4),
-(2, 'jjnknnl', 'jnljn', 'nhbh@gmail.com', 'hbljbhb', 'hjbb', '2021-01-05', 9, 'hjbh', 'hb', 9999, 2, 2);
+(2, 'jjnknnl', 'jnljn', 'nhbh@gmail.com', 'hbljbhb', 'hjbb', '2021-01-05', 9, 'hjbh', 'hb', 9999, 2, 2),
+(3, 'dsqfdsf', 'dsqdqsddqsdqs', 'fsdfdsfds@gamil.com', 'fsdfs', 'dqsdqsd', '1222-12-12', 50, 'sdfdsf', 'fdsfs', 0, 999, 2),
+(4, 'gurak.n', 'testnico', 'nicolasgurak@gmail.com', 'gurak', 'nicolas', '1999-09-15', 50, 'des venelles', 'Rennes', 35000, 1, 4),
+(5, 'qsdqsd', 'dsqdqsdsqdqs', 'dqdqsdq@gmail.com', 'qsdqsd', 'dqsdqs', '1999-09-15', 0, 'dsqdqs', 'sdqs', 0, 1, 1),
+(6, 'dqsdsq', 'dqsdsqdfdsdsf', 'dqsdqs@gmail.com', 'dqsdsqd', 'dsqdsqqdsdqsdqs', '2021-02-11', 0, 'fdsfds', 'fdsfsd', 0, 1, 4),
+(7, 'dqsdsqd', 'dsfsdfdsfdsfsdf', 'dsqdsqd@fdsf', 'gdfgdfg', 'sqdsqdqssqd', '2012-05-12', 0, 'fdsfsdf', 'dfhgdghfdh', 0, 2, 4);
 
 --
 -- Indexes for dumped tables
@@ -212,13 +219,13 @@ ALTER TABLE `emploiDuTemps`
 -- AUTO_INCREMENT for table `formation`
 --
 ALTER TABLE `formation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
 --
 -- AUTO_INCREMENT for table `infoEcole`
 --
 ALTER TABLE `infoEcole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `message`
@@ -236,7 +243,7 @@ ALTER TABLE `note`
 -- AUTO_INCREMENT for table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
