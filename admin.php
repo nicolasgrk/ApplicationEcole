@@ -13,7 +13,7 @@ header( 'content-type: text/html; charset=utf-8' );
     <meta charset="UTF-8">
     <meta name="description" content="...">
     <meta name="keywords" content="...">
-    <meta name="author" content="Nicolas Gurak">
+    <meta name="author" content="Mahé Louis">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="style/style.css">
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
@@ -319,7 +319,7 @@ header( 'content-type: text/html; charset=utf-8' );
 <?php
 
 if(isset($_POST['formations'])){
-        // affichage lors du clic sur Utilisateurdans la page index.php
+        // affichage lors du clic sur Utilisateur dans la page index.php
         include("include/_inc_parametres.php");
         include("include/_inc_connexion.php");
 
