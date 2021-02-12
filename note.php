@@ -173,12 +173,9 @@ header( 'content-type: text/html; charset=utf-8' );
 
                 </form>
             </div>
-  
-            <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des utilisateur. <a href="note.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter une note</a> </p>
 
         </div>
     </div>
-
          
 <?php
             if(isset($_POST['formations'])){
@@ -188,6 +185,14 @@ header( 'content-type: text/html; charset=utf-8' );
         $noteEleve=$cnx->query("SELECT utilisateur.nom, utilisateur.prenom, matiere, note, utilisateur.id as idUtili, note.id as idNote FROM note, utilisateur where note.id_utilisateur = utilisateur.id and utilisateur.id_formation = ".$_POST['formations']); //Récupération de toute la table note avec nom et prenom
         $noteEleve->setFetchMode(PDO::FETCH_OBJ);
 ?>
+
+            <div class="columns is-centered">
+                <div class="column has-text-centered is-5">
+                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des notes. <a href="note.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter une note</a> </p>
+                </div>
+            </div>
+
+
         <article class="columns is-centered">
         <div class="column has-text-centered is-4">
             
@@ -225,6 +230,13 @@ header( 'content-type: text/html; charset=utf-8' );
     <?php
             }else{
                 ?>
+
+
+            <div class="columns is-centered">
+                <div class="column has-text-centered is-5">
+                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des notes.</p>
+                </div>
+            </div>
                 <section class="section">
                 <div class="container">               
                     <div class="columns is-centered">

@@ -25,7 +25,31 @@ header( 'content-type: text/html; charset=utf-8' );
 <body>
     <!--Header-->
     <!--body-->
- 
+          <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="note.php">
+      <img src="img/logo.png" >
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="note.php" class="button is-primary"><strong>Gestion évenements</strong></a>
+          <a href="agenda.php" class="button is-light">Gestion agenda</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
 
 <?php
     if (isset ($_GET['action'])) //Si on récupère "action on exécute la suite
@@ -42,32 +66,71 @@ header( 'content-type: text/html; charset=utf-8' );
             //le résultat est récupéré sous forme d'objet
             $info=$req_pre->fetch(PDO::FETCH_OBJ);
 ?>
-            <h2>Note</h2>
-            <p>Sur cette page, vous pouvez modifier joueur.</p>
-                <div class="formulaire">                    
-                    <form method="post" action="information_ecole_action.php?action=modifier"> <!--Formulaire pour modifier un joueur-->
-                      <input type="hidden" name="numero" value="<?php echo $info->id; ?>" />  <!-- numéro du note sélectionné caché -->
-                        <input class="input" type="text" name="newName" id="evenement" value='<?php echo utf8_encode($info->intituleEvenement); ?>' required >
-                        <input class="input" type="date"  name="newDate" id="date" value='<?php echo $info->date; ?>' required> 
-                        <button type="submit" value="Submit" class="myButton">Soumettre</button><!--Bouton d'envoi-->
-                    </form>
+
+                <section class="section">
+                <div class="container">  
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered is-5">
+                            <p>Sur cette page, vous pouvez modifier un évenement.</p>
+                        </div>
+                    </div>
+                    <article class="columns is-centered">
+                        <div class="column has-text-centered is-4">
+                            <form method="post" action="information_ecole_action.php?action=modifier" class="box"> <!--Formulaire pour modifier un joueur-->
+                                <input type="hidden" name="numero" value="<?php echo $info->id; ?>" />  <!-- numéro du note sélectionné caché -->
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="newName" id="evenement" value='<?php echo utf8_encode($info->intituleEvenement); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="date" name="newDate" id="date" value='<?php echo utf8_encode($info->date); ?>' required> 
+                                    </div>
+                                </div>
+
+                                <input class="button is-primary" type="submit" value="Envoyer"><!--Bouton d'envoi-->
+                            </form>
+                        </div>
+                    </article>
                 </div>
+            </section>
+
+
+
+
+                
 <?php
         }
         if ($_GET['action'] == 'nouveau')//Si l'action est égale à nouveau alors on continue{
         { 
 ?>
-            <section class="section">
-                <div class="container">
-                    <h1 class="title">Ajouter une information</h1>
-                    <form method="post" action="information_ecole_action.php?action=ajouter" enctype="multipart/form-data">
-                        <h2>Informations école</h2>
-                        <label id="nomEvenement" for="evenement">Intitulé de l'évenement</label>
-                        <input type="text" name="nomEvenement" placeholder="Intitulé de l'évenement" required>
-                        <label id="date" for="date">Date</label>
-                        <input type="date" name="date" required>
-                        <input type="submit" value="Envoyer">
-                    </form>
+             <section class="section">
+                <div class="container">               
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered is-5">
+                            <h1 class="title">Ajouter information</h1>    
+                        </div>
+                    </div>
+                    <article class="columns is-centered">
+                        <div class="column has-text-centered is-4">
+                            <form method="post" action="information_ecole_action.php?action=ajouter" enctype="multipart/form-data" class="box">
+                                <div class="field">
+                                    <label class="label">Intitulé de l'évenement</label>
+                                    <div class="control">
+                                    <input class="input"type="text" name="nomEvenement" placeholder="Intitulé de l'évenement" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Date</label>
+                                    <div class="control">
+                                    <input class="input" type="date" name="date" required>
+                                    </div>
+                                </div>
+                                <input class="button is-primary" type="submit" value="Envoyer">
+                            </form>
+                        </div>
+                    </article>
                 </div>
              </section>
 <?php
@@ -76,11 +139,16 @@ header( 'content-type: text/html; charset=utf-8' );
     else
     {
 ?>
-        <h2>Information école </h2>
-        
-
-    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer les informations de l'ecole. <a href="information_ecole.php?action=nouveau">Ajouter une information</a> </p>
-         
+    <div class="columns is-centered">
+        <div class="column has-text-centered is-5">
+            <h2>Informations de l'école</h2>
+        </div>
+    </div>
+        <div class="columns is-centered">
+                <div class="column has-text-centered is-5">
+                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer les informations de l'ecole. <a href="information_ecole.php?action=nouveau">Ajouter une information</a> </p>
+                </div>
+        </div>
 <?php
 
 
@@ -91,7 +159,8 @@ header( 'content-type: text/html; charset=utf-8' );
         $infoEcole->setFetchMode(PDO::FETCH_OBJ);
 ?>
 
-
+<article class="columns is-centered">
+        <div class="column has-text-centered is-5">
         <table class="table">
             <thead>
                 <tr>
@@ -123,7 +192,8 @@ header( 'content-type: text/html; charset=utf-8' );
     } 
 ?>
 
-        <p id=footer>Wesh le footer</p>
+</div>
+          </article>
 
 </body><!--Body-->
 </html>
