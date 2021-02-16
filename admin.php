@@ -2,6 +2,10 @@
 include ( "include/_inc_parametres.php");
 include ( "include/_inc_connexion.php");
 header( 'content-type: text/html; charset=utf-8' );
+session_start();
+if(isset($_SESSION['id'])){
+    if ($_SESSION['role']== 1){
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -36,6 +40,15 @@ header( 'content-type: text/html; charset=utf-8' );
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a href="deconnexion.php" class="button is-light">Déconnexion</a>
+
+                </div>
+            </div>
         </div>
     </nav>
  
@@ -386,6 +399,8 @@ if(isset($_POST['formations'])){
     <div class="container">               
         <div class="columns is-centered">
             <div class="column has-text-centered is-5">
+
+
                 <p class="title">Veuillez choisir une formation</p>    
             </div>
         </div>
@@ -397,3 +412,15 @@ if(isset($_POST['formations'])){
 
 </body><!--Body-->
 </html>
+<?php
+    }else{
+
+    echo "vous n'avez pas le droit d'etre la ";
+    
+    }
+}else{
+
+echo "impossible car pas co";
+
+}
+?>

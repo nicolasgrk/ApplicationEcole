@@ -2,7 +2,14 @@
 include ( "include/_inc_parametres.php");
 include ( "include/_inc_connexion.php");
 header( 'content-type: text/html; charset=utf-8' );
+session_start();
+if(isset($_SESSION['id'])){
+    
+    if ($_SESSION['role']== 5){
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -45,6 +52,8 @@ header( 'content-type: text/html; charset=utf-8' );
         <div class="buttons">
           <a href="note.php" class="button is-primary"><strong>Gestion évenements</strong></a>
           <a href="agenda.php" class="button is-light">Gestion agenda</a>
+          <a href="deconnexion.php" class="button is-light">Déconnexion</a>
+
         </div>
       </div>
     </div>
@@ -197,3 +206,15 @@ header( 'content-type: text/html; charset=utf-8' );
 
 </body><!--Body-->
 </html>
+<?php
+    }else{
+
+        echo "vous n'avez pas le droit d'etre la ";
+        
+        }
+}else{
+
+echo "impossible car pas co";
+
+}
+?>

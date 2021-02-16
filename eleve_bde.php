@@ -2,7 +2,16 @@
 include ( "include/_inc_parametres.php");
 include ( "include/_inc_connexion.php");
 header( 'content-type: text/html; charset=utf-8' );
-?>
+
+ session_start();
+if(isset($_SESSION['id'])){
+    if ($_SESSION['role']== 3){
+    ?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -46,6 +55,7 @@ header( 'content-type: text/html; charset=utf-8' );
                 <div class="buttons">
                     <a href="eleve_bde.php" class="button is-primary"><strong>Page perso</strong></a>
                     <a href="information_bde.php" class="button is-light">Gestion évenements</a>
+                    <a href="deconnexion.php" class="button is-light">Déconnexion</a>
 
                 </div>
             </div>
@@ -60,7 +70,7 @@ header( 'content-type: text/html; charset=utf-8' );
                 <div class="tile is-ancestor">
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-primary " id="1">
-                            <h2 class="subtitle is-4 has-text-centered has-text-black">Informations BDE</h2>
+                            <h2 class="subtitle is-4 has-text-centered has-text-black"><?php echo $_SESSION['idformation'];?></h2>
                             <?php 
                                     $infoEcole=$cnx->query("SELECT intituleEvenement, DATE_FORMAT(dateEvenement, '%d %M %Y') as dateEvnt from bde where dateEvenement > CURRENT_DATE ORDER BY dateEvenement limit 5"); //Récupération de toute la table note avec nom et prenom
                                     $infoEcole->setFetchMode(PDO::FETCH_OBJ);
@@ -152,4 +162,16 @@ header( 'content-type: text/html; charset=utf-8' );
 </body>
 <!--Body-->
 
-</html>
+</html> 
+<?php
+    }else{
+
+        echo "vous n'avez pas le droit d'etre la ";
+        
+        }
+}else{
+
+    echo "impossible car pas co";
+
+}
+?>
