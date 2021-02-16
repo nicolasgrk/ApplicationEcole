@@ -22,16 +22,11 @@ header( 'content-type: text/html; charset=utf-8' );
         <article class="columns is-centered">
             <div class="column has-text-centered is-4">
                 <form action="connexion_action.php" method="post">
-                    <h1>Connexion</h1>
+                    <h1>Mot de passe oublié</h1>
                     <div class="field">
-                        <label id="" for="conId">Identifiant</label>
-                        <input class="input" type="text" name="cnxId" placeholder="Saisir votre identifiant" required>
+                        <label id="" for="conId">E-mail</label>
+                        <input class="input" type="email" name="mdpoemail" placeholder="Saisir votre adresse e-mail" required>
                     </div>
-                    <div class="field">
-                        <label id="" for="conMotdepasse">Mot de passe</label>
-                        <input class="input" type="password" name="cnxMotdepasse" placeholder="Votre mot de passe" required>
-                    </div>
-                    <a href="motdepasseoublie.php">mot de passe oublié</a>
                     <input type="submit" value="Envoyer">      
                 </form>
             </div>
