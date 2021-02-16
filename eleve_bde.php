@@ -57,42 +57,92 @@ header( 'content-type: text/html; charset=utf-8' );
     <section class="section">
         <div class="block">
             <div class="container">
-            <div class="tile is-ancestor">
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-primary" id="1">
-                        <?php 
-                                $infoEcole=$cnx->query("SELECT intituleEvenement, DATE_FORMAT(dateEvenement, '%d %M %Y') as dateEvnt from bde where dateEvenement > CURRENT_DATE ORDER BY dateEvenement limit 5"); //Récupération de toute la table note avec nom et prenom
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-primary " id="1">
+                            <h2 class="subtitle is-4 has-text-centered has-text-black">Informations BDE</h2>
+                            <?php 
+                                    $infoEcole=$cnx->query("SELECT intituleEvenement, DATE_FORMAT(dateEvenement, '%d %M %Y') as dateEvnt from bde where dateEvenement > CURRENT_DATE ORDER BY dateEvenement limit 5"); //Récupération de toute la table note avec nom et prenom
+                                    $infoEcole->setFetchMode(PDO::FETCH_OBJ);
+                                    $prodInfo=$infoEcole->fetch();
+                                    while ($prodInfo) {
+                                        ?><p class="subtitle"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> le <?php echo utf8_encode($prodInfo->dateEvnt); ?> </p><?php
+                                        $prodInfo=$infoEcole->fetch(); 
+                                    }
+                            ?>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-warning" id="1">
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Emploi du temps</h2>
+
+                            <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">fddsqfqs</p>
+
+
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-info" id="1">
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Conversation</h2>
+
+                            <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">fddsqfqs</p>
+
+                        </article>
+                    </div>
+                </div>
+                <div class="tile is-ancestor">
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-primary" id="1">
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Vie de l'école</h2>                            
+                            <?php 
+                                $infoEcole=$cnx->query("SELECT intituleEvenement, DATE_FORMAT(date, '%d %M %Y') as dateEvnt from infoEcole where date > CURRENT_DATE ORDER BY date limit 5"); //Récupération de toute la table note avec nom et prenom
                                 $infoEcole->setFetchMode(PDO::FETCH_OBJ);
                                 $prodInfo=$infoEcole->fetch();
                                 while ($prodInfo) {
                                     ?><p class="subtitle"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> le <?php echo utf8_encode($prodInfo->dateEvnt); ?> </p><?php
                                     $prodInfo=$infoEcole->fetch(); 
                                 }
-                        ?>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-warning" id="1">
+                            ?>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-warning" id="1">
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Note</h2>
+                            <?php 
+                                $infoEcole=$cnx->query("SELECT * from note where id_utilisateur=2 ORDER BY note limit 5"); //Récupération de toute la table note avec nom et prenom
+                                $infoEcole->setFetchMode(PDO::FETCH_OBJ);
+                                $prodInfo=$infoEcole->fetch();
+                                while ($prodInfo) {
+                                    ?><p class="subtitle"><?php echo utf8_encode($prodInfo->matiere); ?>: <strong class="has-text-right"><?php echo utf8_encode($prodInfo->note); ?> </strong></p><?php
+                                    $prodInfo=$infoEcole->fetch(); 
+                                }
+                            ?>
 
-                    <p class="subtitle">test</p>
-                        <p class="subtitle">fddsqfqs</p>
-                        <p class="subtitle">test</p>
-                        <p class="subtitle">fddsqfqs</p>
-                        <p class="subtitle">test</p>
+                        </article>
+                    </div>
+                    <div class="tile is-parent">
+                        <article class="tile is-child notification is-info" id="1">
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Information perso</h2>
 
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-info" id="1">
                         <p class="subtitle">test</p>
-                        <p class="subtitle">fddsqfqs</p>
-                        <p class="subtitle">test</p>
-                        <p class="subtitle">fddsqfqs</p>
-                        <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">test</p>
+                            <p class="subtitle">fddsqfqs</p>
+                            <p class="subtitle">fddsqfqs</p>
 
-                    </article>
+                        </article>
+                    </div>
                 </div>
-            </div>
+
+            
             
             
             
