@@ -1,6 +1,6 @@
 <?php
 if($_POST){
-  $email = "nicolasgurak@gmail.com";
+  $email = "jbbg49000@gmail.com";
   $name = "GURAK";
   $object = "Voici votre mot de passe";
   $message = "Voici votre nouveau mot de passe  qui est $mdpAleatoire";
@@ -10,7 +10,7 @@ if($_POST){
   $headers .= "From: $name <$email>\r\nReply-to : $name <$email>\nX-Mailer:PHP";
 
   $subject="dfsfsfsdfdsfsdfdsfds";
-  $destinataire="delaslle.sio.gurak.n@gmail.com";
+  $destinataire="nicolasgurak@gmail.com";
   $body="$message";
 
   if(mail($destinataire,$subject,$body,$headers)) {

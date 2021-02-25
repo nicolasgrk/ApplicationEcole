@@ -245,10 +245,6 @@ if(isset($_SESSION['id'])){
                                     <input class="input" type="email" name="adressemail" placeholder="Votre email" required>
                                 </div>
                                 <div class="field">
-                                    <label id="" for="motdepasse">Mot de passe</label>
-                                    <input class="input" type="password" name="motdepasse" minlength=8 placeholder="Votre mot de passe" required>
-                                </div>
-                                <div class="field">
                                     <label id="" for="numerorue">N°Rue</label>
                                     <input class="input" type="text" name="numerorue" placeholder="Numéro de rue" required>
                                 </div>
