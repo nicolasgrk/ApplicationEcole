@@ -62,13 +62,39 @@ if (isset ($_GET['action']))
 		$req_pre->bindValue(':idformation', $_POST['idformation'], PDO::PARAM_INT);
 	
 		$req_pre->execute();
+
+		
+		if($_POST){
+		  $email = "nicolasgurak@gmail.com";
+		  $name = "GURAK";
+		  $object = "Voici votre mot de passe";
+		  $message = "Voici votre nouveau mot de passe  qui est $mdp";
+		
+		  $headers = "MIME-Version: 1.0\r\n";
+		  $headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+		  $headers .= "From: $name <$email>\r\nReply-to : $name <$email>\nX-Mailer:PHP";
+		
+		  $subject="dfsfsfsdfdsfsdfdsfds";
+		  $destinataire="delaslle.sio.gurak.n@gmail.com";
+		  $body="$message";
+		
+		  if(mail($destinataire,$subject,$body,$headers)) {
+			echo 'your mail is sent';
+		  } else {
+			echo "email pas envoyer";
+		  }
+		
+		  
+		}
+		
+
 		?>
 		<html>
-		<head>
- <meta http-equiv="refresh" content="0 ;url=admin.php">Rafraichissement/retour de la page joueur-->
-		</head>
-		<body>
-		</body>
+			<head>
+ 				<!--<meta http-equiv="refresh" content="0 ;url=admin.php">Rafraichissement/retour de la page joueur-->
+			</head>
+			<body>
+			</body>
 		</html>
 		<?php
 	}
@@ -86,11 +112,11 @@ if (isset ($_GET['action']))
 
 		?>
 		<html>
-		<head>
-			<meta http-equiv="refresh" content="0 ; url=admin.php"><!--Rafraichissement/retour de la page joueur-->
-		</head>
-		<body>
-		</body>
+			<head>
+				<meta http-equiv="refresh" content="0 ; url=admin.php"><!--Rafraichissement/retour de la page joueur-->
+			</head>
+			<body>
+			</body>
 		</html>
 		<?php
 	}
