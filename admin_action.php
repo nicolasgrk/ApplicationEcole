@@ -103,7 +103,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 			<head>
- 				<!--<meta http-equiv="refresh" content="0 ;url=admin.php">Rafraichissement/retour de la page joueur-->
+ 				<!--<meta http-equiv="refresh" content="0 ;url=admin.php">Rafraichissement/retour de la page-->
 			</head>
 			<body>
 			</body>

@@ -21,7 +21,7 @@ header( 'content-type: text/html; charset=utf-8' );
     <body>
         <article class="columns is-centered">
             <div class="column has-text-centered is-4">
-                <form action="connexion_action.php" method="post">
+                <form action="motdepasseoublie_action.php" method="post">
                     <h1>Mot de passe oublié</h1>
                     <div class="field">
                         <label id="" for="conId">E-mail</label>
