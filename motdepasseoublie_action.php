@@ -22,9 +22,9 @@ if($_POST){
 		$email = "nicolasmaheesaip@gmail.com";
 		$name = "Appli école";
 		$object = "Voici votre mot de passe";
-		$message = "<h1>Bonjour</h1>
-					<h2>Nouveau mot de passe</h2>
-					<p>voici votre nouveau mot de passe: ".$password."</p>";
+		$message = "Bonjour
+					Nouveau mot de passe
+					voici votre nouveau mot de passe: ".$password."";
 		
 		$headers = "MIME-Version: 1.0\r\n";
 		$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
