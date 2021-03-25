@@ -12,6 +12,10 @@ if($_POST['mdp1'] === $_POST['mdp2']){
     echo $mdp;
     $cnx->exec('UPDATE utilisateur set motDePasse = "'.$mdp.'" where id='.$id);
 
+    header('refresh:1; url=connexion.php');
+               
+            
+
 }else{
 
     echo "mot de passe different";

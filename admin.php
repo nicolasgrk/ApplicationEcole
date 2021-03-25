@@ -341,7 +341,6 @@ if(isset($_POST['formations'])){
             <thead>
             <tr>
                     <th>Identifiant</th>
-                    <th>Mot de Passe</th>
                     <th>Email</th>
                     <th>Nom</th>
                     <th>Prénom</th>
@@ -363,7 +362,6 @@ if(isset($_POST['formations'])){
 ?>
                 <tr>
                     <td><?php echo utf8_encode($prodUtilisateur->identifiant); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->motDePasse); ?> </td>
                     <td><?php echo utf8_encode($prodUtilisateur->adresseMail); ?> </td>
                     <td><?php echo utf8_encode($prodUtilisateur->nom); ?> </td>
                     <td><?php echo utf8_encode($prodUtilisateur->prenom); ?> </td>
