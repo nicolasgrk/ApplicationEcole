@@ -85,14 +85,15 @@ if(isset($_SESSION['id'])){
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-warning" id="1">
                         <h2 class="subtitle is-4 has-text-centered has-text-black">Emploi du temps</h2>
-
-                            <p class="subtitle">test</p>
-                            <p class="subtitle">fddsqfqs</p>
-                            <p class="subtitle">test</p>
-                            <p class="subtitle">fddsqfqs</p>
-                            <p class="subtitle">fddsqfqs</p>
-
-
+                        <?php 
+                                $infoEcole=$cnx->query('SELECT * FROM emploiDuTemps WHERE date >= now() and formation = '.$_SESSION['idformation'].' ORDER by date;'); 
+                                $infoEcole->setFetchMode(PDO::FETCH_OBJ);
+                                $prodInfo=$infoEcole->fetch();
+                                while ($prodInfo) {
+                                    ?><p class="subtitle"><?php echo utf8_encode($prodInfo->matiere); ?> à <?php echo utf8_encode($prodInfo->date); ?> salle:<?php echo utf8_encode($prodInfo->salle); ?> </p><?php
+                                    $prodInfo=$infoEcole->fetch(); 
+                                }
+                            ?>
                         </article>
                     </div>
                     <div class="tile is-parent">
