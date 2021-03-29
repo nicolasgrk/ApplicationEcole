@@ -104,11 +104,11 @@ if(isset($_SESSION['id'])){
                                         <input class="input" type="email" name="newadressemail" value='<?php echo utf8_encode($utilisateur->adresseMail); ?>' required>
                                     </div>
                                 </div>
-                                <div class="field">
+                                <!--<div class="field">
                                     <div class="control"> 
                                         <input class="input" type="password" name="newmotdepasse"  value='<?php echo utf8_encode($utilisateur->motDePasse); ?>' required>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="field">
                                     <div class="control">                                         
                                         <input class="input" type="text" name="newnumerorue" value='<?php echo utf8_encode($utilisateur->numeroRue); ?>' required>
