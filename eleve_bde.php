@@ -85,15 +85,53 @@ if(isset($_SESSION['id'])){
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-warning" id="1">
                         <h2 class="subtitle is-4 has-text-centered has-text-black">Emploi du temps</h2>
+                        <table class="table">
+                            <tr>
+                                <td>Jour</td>
+                                <td>Heure</td>
+                                <td>Matières</td>
+                                <td>Salle</td>
+                            </tr>
                         <?php 
-                                $infoEcole=$cnx->query('SELECT * FROM emploiDuTemps WHERE date >= now() and formation = '.$_SESSION['idformation'].' ORDER by date;'); 
+                                $infoEcole=$cnx->query('SELECT  DAYOFWEEK(date) as jour, date(date) as datedujour, HeureDebut, HeureFin,matiere, salle FROM emploiDuTemps WHERE date = date(now()) and formation = 2 ORDER by date;'); 
                                 $infoEcole->setFetchMode(PDO::FETCH_OBJ);
                                 $prodInfo=$infoEcole->fetch();
-                                while ($prodInfo) {
-                                    ?><p class="subtitle"><?php echo utf8_encode($prodInfo->matiere); ?> à <?php echo utf8_encode($prodInfo->date); ?> salle:<?php echo utf8_encode($prodInfo->salle); ?> </p><?php
-                                    $prodInfo=$infoEcole->fetch(); 
+                                while($prodInfo)
+                                { 
+                                     if ($prodInfo->jour ==1){ 
+                                          $jour2= "Dimanche";
+                                     }elseif($prodInfo->jour ==2){ 
+                                          $jour2= "Lundi";
+                                     }elseif($prodInfo->jour ==3){ 
+                                          $jour2= "Mardi";
+                                     }elseif($prodInfo->jour ==4){ 
+                                          $jour2= "Mercredi";
+                                     }elseif($prodInfo->jour ==5){ 
+                                          $jour2= "Jeudi";
+                                     }elseif($prodInfo->jour ==6){ 
+                                          $jour2= "Vendredi";
+                                     }elseif($prodInfo->jour ==7){ 
+                                          $jour2= "Samedi";
+                                     }
+                                
+                                
+                                
+                                
+                                
+                                ?>
+                                
+                                  <tr>
+                                    <td><?php echo $prodInfo->datedujour?> </td>
+                                    <td><?php echo $prodInfo->HeureDebut?> à <?php echo $prodInfo->HeureFin?></td>
+                                    <td><?php echo $prodInfo->matiere?></td>
+                                    <td><?php echo $prodInfo->salle?></td>
+                                  </tr>
+                                <?php
+                                $prodInfo=$infoEcole->fetch(); 
+                                
                                 }
-                            ?>
+                                ?>
+                                </table>
                         </article>
                     </div>
                     <div class="tile is-parent">
