@@ -67,51 +67,15 @@ $prodInfo=$infoEcole->fetch();
 
 while($prodInfo)
 { 
-     if ($prodInfo->jour ==1){ 
-          $jour2= "Dimanche";
-?> 
-<h1>Dimanche </h1><?php echo $prodInfo->matiere?></p>
-<?php
-     }elseif($prodInfo->jour ==2){ 
-          $jour2= "Lundi";
-          ?> 
-          <h1>Lundi </h1><?php echo $prodInfo->matiere ?></p>
-          <?php
-     }elseif($prodInfo->jour ==3){ 
-          $jour2= "Mardi";
-          ?> 
-          <h1>Mardi </h1><?php echo $prodInfo->matiere?></p>
-          <?php     
-     }elseif($prodInfo->jour ==4){ 
-          $jour2= "Mercredi";
-          ?> 
-          <h1>Mercredi </h1><?php echo $prodInfo->matiere?></p>
-          <?php     
-     }elseif($prodInfo->jour ==5){ 
-          $jour2= "Jeudi";
-          ?> 
-          <h1>Jeudi </h1><?php echo $prodInfo->matiere?></p>
-          <?php
-     }elseif($prodInfo->jour ==6){ 
-          $jour2= "Vendredi";
-          ?> 
-          <h1>Vendredi </h1><p><?php echo $prodInfo->matiere?></p>
-          <?php
-     }elseif($prodInfo->jour ==7){ 
-          $jour2= "Samedi";
-          ?> 
-          <h1>Samedi </h1><?php echo $prodInfo->matiere?></p>
-          <?php
-          }
 
-
-
-
-
+          $dateMySQL = ($prodInfo->datedujour);
+          setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+      
 ?>
 
+
   <tr>
-    <td><?php echo $prodInfo->datedujour?> </td>
+    <td><?php echo strftime("%A %d %B %Y",strtotime($dateMySQL))?> </td>
     <td><?php echo $prodInfo->heure?></td>
     <td><?php echo $prodInfo->matiere?></td>
     <td><?php echo $prodInfo->salle?></td>
@@ -121,34 +85,11 @@ $prodInfo=$infoEcole->fetch();
 
 }
 
-            setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-            echo strftime('%A %d %B %Y %I:%M:%S'). '<br>';
-            echo strftime('%x'). '<br>';
-            echo strftime('%T'). '<br>';
-            echo strftime('%c'). '<br>';
-            $date = '27/09/2013';
-            echo strftime('%c'). '<br>';
-          echo date('%A %d %B %Y %I:%M:%S', strftime($date));
+
             
 ?>
 
 
-<?php
-    $dateMySQL = "2018-04-27 12:34:35";
-
-    $seulementAnnee = date("Y", strtotime($dateMySQL));
-    $seulementHeure = date("h:i", strtotime($dateMySQL));
-    $seulementDate = date("Y-%B-%A", strtotime($dateMySQL));
-?>
-<div>
-    Année : <?= $seulementAnnee ?>
-</div>
-<div>
-    Heure : <?= $seulementHeure ?>
-</div>
-<div>
-    Date : <?= $seulementDate ?>
-</div>
 </table>
 
 
