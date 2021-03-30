@@ -25,7 +25,6 @@ if(isset($_SESSION['id'])){
     <meta name="author" content="Nicolas Gurak">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="style/style.css">
-    <script type="text/javascript" src="main.js"></script>
 
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
 
@@ -88,7 +87,6 @@ if(isset($_SESSION['id'])){
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-warning" id="1">
                         <h2 class="subtitle is-4 has-text-centered has-text-black">Emploi du temps</h2>
-                        <button class="is-large" aria-label="close" id="open_modal">fdsqfdsf</button>
 
                         <table class="table" id="open_modal">
                             <tr>
@@ -98,7 +96,7 @@ if(isset($_SESSION['id'])){
                                 <td>Salle</td>
                             </tr>
                         <?php 
-                                $infoEcole=$cnx->query('SELECT  DAYOFWEEK(date) as jour, date(date) as datedujour, HeureDebut, HeureFin,matiere, salle FROM emploiDuTemps WHERE date >= date(now()) and formation = 2 ORDER by date;'); 
+                                $infoEcole=$cnx->query('SELECT  DAYOFWEEK(date) as jour, date(date) as datedujour, HeureDebut, HeureFin,matiere, salle FROM emploiDuTemps WHERE date = date(now()) and formation = 2 ORDER by date;'); 
                                 $infoEcole->setFetchMode(PDO::FETCH_OBJ);
                                 $prodInfo=$infoEcole->fetch();
                                 while($prodInfo)
@@ -126,11 +124,53 @@ if(isset($_SESSION['id'])){
                         <div class="modal" id="modal_to_open">
                             <div class="modal-background"></div>
                                 <div class="modal-content">
-                                    <!-- Any other Bulma elements you want -->
+                                    <header class="modal-card-head">
+                                    <p class="modal-card-title">Emploi du temps</p>
+                                    <button class="delete" aria-label="close" id="close_modal"></button>
+                                    </header>
+                                    <section class="modal-card-body">
+                                    <table class="table">
+                                        <tr>
+                                            <td>Jour</td>
+                                            <td>Heure</td>
+                                            <td>Matières</td>
+                                            <td>Salle</td>
+                                        </tr>
+                                        <?php 
+                                        $infoEcole=$cnx->query('SELECT  DAYOFWEEK(date) as jour, date(date) as datedujour, HeureDebut, HeureFin,matiere, salle FROM emploiDuTemps WHERE week(date) = week(CURRENT_DATE) and formation = 2 ORDER by date;'); 
+                                        $infoEcole->setFetchMode(PDO::FETCH_OBJ);
+                                        $prodInfo=$infoEcole->fetch();
+                                        while($prodInfo)
+                                        { 
+
+                                                $dateMySQL = ($prodInfo->datedujour);
+                                                setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
+                                            
+                                        ?>
+
+
+                                        <tr>
+                                            <td><?php echo strftime("%A %d %B %Y",strtotime($dateMySQL))?> </td>
+                                            <td><?php echo $prodInfo->HeureDebut?> - <?php echo $prodInfo->HeureFin?></td>
+                                            <td><?php echo $prodInfo->matiere?></td>
+                                            <td><?php echo $prodInfo->salle?></td>
+                                        </tr>
+                                        <?php
+                                        $prodInfo=$infoEcole->fetch(); 
+
+                                        } 
+                                        ?>
+                                    </table>
+                                    </section>
+                                    <footer class="modal-card-foot">
+                                    </footer>
                                 </div>
-                            <button class="modal-close is-large" aria-label="close"></button>
+
+                            
                         </div>
                     </div>
+
+                    
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-info" id="1">
                         <h2 class="subtitle is-4 has-text-centered has-text-black">Conversation</h2>
@@ -195,6 +235,8 @@ if(isset($_SESSION['id'])){
             
         </div>
     </section>
+    <script src="main.js"></script>
+
 </body>
 <!--Body-->
 

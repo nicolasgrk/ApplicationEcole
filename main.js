@@ -8,4 +8,15 @@ $(document).ready(function(){
         )
 
     });
+
+
+    $('#close_modal').click(function(){ 
+        $('#modal_to_open').css(
+            { 
+                'display':'none'
+            }
+        )
+
+    });
+
 });
