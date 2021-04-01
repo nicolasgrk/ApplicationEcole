@@ -5,7 +5,7 @@ session_start();
 // On vérifie la méthode
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On vérifie si l'utilisateur est connecté
-    if(isset($_SESSION['user']['id'])){
+    if(isset($_SESSION['id'])){
         // L'utilisateur est connecté
         // On récupère le message
         $donneesJson = file_get_contents('php://input');
@@ -21,15 +21,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             require_once('../inc/bdd.php');
 
             // On écrit la requête
-            $sql = 'INSERT INTO `messages`(`message`, `users_id`) VALUES (:message, :user);';
+            $sql = 'INSERT INTO `message`(`message`, `id_utilisateur`) VALUES (:message, :user);';
 
             // On prépare la requête
             $query = $db->prepare($sql);
 
             // On injecte les valeurs
             $query->bindValue(':message', strip_tags($donnees->message), PDO::PARAM_STR);
-            $query->bindValue(':user', $_SESSION['user']['id'], PDO::PARAM_INT);
-
+            $query->bindValue(':user', $_SESSION['id'], PDO::PARAM_INT);
             // On exécute en vérifiant si ça fonctionne
             if($query->execute()){
                 http_response_code(201);
