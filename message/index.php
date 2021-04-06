@@ -8,7 +8,7 @@ if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
 }else{
     // Ici l'utilisateur n'est pas connecté
     ?>
-    <a class="btn btn-primary mr-2" href="message/connexion.php">Connexion</a> <a class="btn btn-primary" href="inscription.php">Inscription</a>
+    <a class="btn btn-primary mr-2" href="connexion.php">Connexion</a> <a class="btn btn-primary" href="inscription.php">Inscription</a>
 <?php
 }
 ?>

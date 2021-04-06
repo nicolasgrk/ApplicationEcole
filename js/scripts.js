@@ -28,6 +28,9 @@ function chargeMessages(){
             if(this.status == 200){
                 // On a une réponse
                 // On convertit la réponse en objet JS
+
+                console.log(this.response);
+
                 let messages = JSON.parse(this.response)
 
                 // On retourne l'objet
@@ -39,7 +42,6 @@ function chargeMessages(){
                 for(let message of messages){
                     // On transforme la date du message en JS
                     let dateMessage = new Date(message.createdAt)
-                    console.log(dateMessage);
                     // On ajoute le contenu avant le contenu actuel de discussion
                     discussion.innerHTML = `<p>${message.identifiant} a écrit le ${dateMessage.toLocaleString()} : ${message.message}</p>` + discussion.innerHTML
 
@@ -86,7 +88,6 @@ function ajoutMessage(){
 
         // On convertit les données en JSON
         let donneesJson = JSON.stringify(donnees)
-        console.log(donneesJson);
         // On envoie les données en POST en Ajax
         // On instancie XMLHttpRequest
         let xmlhttp = new XMLHttpRequest()

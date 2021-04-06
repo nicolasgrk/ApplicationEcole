@@ -20,6 +20,8 @@ $(document).ready(function(){
     });
 
 });
+
+
 $(document).ready(function(){ 
     
     $('#open_modal2').click(function(){ 
