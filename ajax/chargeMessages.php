@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
         // On écrit la requête
         //$sql = 'SELECT `message`.`id`, `message`.`message`, `message`.`createdAt`, `utilisateur`.`identifiant` FROM `message` LEFT JOIN `utilisateur` ON `message`.`id_utilisateur` = `utilisateur`.`id`'.$filtre.' WHERE `utilisateur`.`id_formation` ='.$formation.'  ORDER BY `message`.`id` ;';
-        $sql = 'SELECT `message`.`id`, `message`.`message`, `message`.`createdAt`, `utilisateur`.`identifiant`FROM `message` LEFT JOIN `utilisateur` ON `message`.`id_utilisateur` = `utilisateur`.`id`'.$filtre.' AND WHERE `utilisateur`.`id_formation` ='.$formation.' ORDER BY `message`.`id` DESC LIMIT 5;';
+        $sql = 'SELECT `message`.`id`, `message`.`message`, `message`.`createdAt`, `utilisateur`.`identifiant`FROM `message` LEFT JOIN `utilisateur` ON `message`.`id_utilisateur` = `utilisateur`.`id`'.$filtre.' AND  `utilisateur`.`id_formation` ='.$formation.' ORDER BY `message`.`id` DESC ;';
 
         // On exécute la requête
         $query = $db->query($sql);
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $messages = $query->fetchAll();
 
         // On encode en JSON
-        $messagesJson = json_encode($sql);
+        $messagesJson = json_encode($messages);
 
         // On envoie
         echo $messagesJson;

@@ -34,7 +34,7 @@ if(isset($_SESSION['id'])){
     <!--body-->
           <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="note.php">
+    <a class="navbar-item" href="information_ecole.php">
       <img src="img/logo.png" >
     </a>
 
@@ -50,8 +50,8 @@ if(isset($_SESSION['id'])){
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a href="note.php" class="button is-primary"><strong>Gestion évenements</strong></a>
-          <a href="agenda.php" class="button is-light">Gestion agenda</a>
+          <a href="information_ecole.php" class="button is-primary"><strong>Gestion évenements</strong></a>
+          <a href="agenda2.php" class="button is-light">Gestion agenda</a>
           <a href="deconnexion.php" class="button is-light">Déconnexion</a>
 
         </div>
@@ -150,7 +150,7 @@ if(isset($_SESSION['id'])){
 ?>
     <div class="columns is-centered">
         <div class="column has-text-centered is-5">
-            <h2>Informations de l'école</h2>
+            <h1 class="title is-2">Informations de l'école</h1>
         </div>
     </div>
         <div class="columns is-centered">

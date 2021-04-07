@@ -20,7 +20,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			 <meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
+			<!-- <meta http-equiv="refresh" content="0 ; url=note.php">Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>
@@ -34,7 +34,7 @@ if (isset ($_GET['action']))
 		// préparation de la requête : pour ajouter les informations de la table
 		$matiere =$_POST['matiere'];
 		$note=$_POST['note'];
-		$newprenom=$_POST['newprenom'];
+		
 
 	
 		for ($i = 0; $i <=0; $i++) {
@@ -50,7 +50,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			  <meta http-equiv="refresh" content="0 ;url=note.php"><!--Rafraichissement/retour de la page joueur-->
+			 <!-- <meta http-equiv="refresh" content="0 ;url=note.php"><!--Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>
@@ -72,7 +72,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			<meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
+			<!--<meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>

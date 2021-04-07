@@ -28,6 +28,7 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
         {
             header('refresh:1; url=connexion.php');
             ?>
+           
             <div class="alert alert-danger">
                 <strong>Erreur :</strong> Mauvais mdp ou identifiant!
             </div>
@@ -65,18 +66,18 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
                     elseif ($resultat['role'] == 2)
                         header('refresh:1; url=note.php');
                     elseif ($resultat['role'] == 3)
-                        header('refresh:1; url=eleve_bde.php');
+                        header('refresh:1; url=eleve.php');
                     elseif ($resultat['role'] == 4)
                         header('refresh:1; url=eleve.php');
                     elseif ($resultat['role'] == 5)
                         header('refresh:1; url=information_ecole.php');
-        
-                    ?>
-                        <div class="alert alert-success">
-                            <strong>Succès :</strong> Vous êtes à présent connecté !
-                        </div>
-                    <?php
                     $req->closeCursor();
+
+                    ?>
+                    
+                    <div class="alert alert-danger">
+                <strong>Connexion réussie</strong>
+            </div><?php
             }
 
         }

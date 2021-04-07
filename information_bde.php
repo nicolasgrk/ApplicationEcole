@@ -10,7 +10,7 @@ if(isset($_SESSION['id'])){
 
 
 
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -51,7 +51,7 @@ if(isset($_SESSION['id'])){
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-            <a href="eleve_bde.php" class="button is-light">Page perso</a>
+            <a href="eleve.php" class="button is-light">Page perso</a>
             <a href="information_bde.php" class="button is-primary"><strong>Gestion évenements</strong></a>
             <a href="deconnexion.php" class="button is-light">Déconnexion</a>
 
@@ -151,7 +151,7 @@ if(isset($_SESSION['id'])){
 ?>
     <div class="columns is-centered">
         <div class="column has-text-centered is-5">
-            <h2>Informations de l'école</h2>
+            <h1 class="title is-1">Informations de l'école</h1>
         </div>
     </div>
         <div class="columns is-centered">

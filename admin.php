@@ -71,8 +71,8 @@ if(isset($_SESSION['id'])){
             <section class="section">
                 <div class="container">  
                     <div class="columns is-centered">
-                        <div class="column has-text-centered is-5">
-                            <p>Sur cette page, vous pouvez modifier un utilisateur.</p>
+                    <div class="column has-text-centered is-5">
+                            <h1 class="title">Modifer un utilisateur</h1>    
                         </div>
                     </div>
                     <article class="columns is-centered">
@@ -81,52 +81,47 @@ if(isset($_SESSION['id'])){
                                 <input type="hidden" name="numero" value="<?php echo $utilisateur->id; ?>" />  <!-- numéro du Utilisateur sélectionné caché -->
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" class="input" type="text" name="newIdentifiant" id="identifiant" value='<?php echo utf8_encode($utilisateur->identifiant); ?>' required>
+                                        <input class="input" class="input" type="text" name="newIdentifiant" id="identifiant" value='<?php echo $utilisateur->identifiant; ?>' required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">                                
-                                        <input class="input" type="text" name="newprenom" value='<?php echo utf8_encode($utilisateur->prenom); ?>' required>
+                                        <input class="input" type="text" name="newprenom" value='<?php echo $utilisateur->prenom; ?>' placeholder="Prénom" required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="text" name="newnom" value='<?php echo utf8_encode($utilisateur->nom); ?>' required>
+                                        <input class="input" type="text" name="newnom" value='<?php echo $utilisateur->nom; ?>' placeholder="Nom"required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="date" name="newdatedenaissance"value='<?php echo utf8_encode($utilisateur->dateNaissance); ?>' required>
+                                        <input class="input" type="date" name="newdatedenaissance"value='<?php echo $utilisateur->dateNaissance; ?>' placeholder="Date de naissance" required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="email" name="newadressemail" value='<?php echo utf8_encode($utilisateur->adresseMail); ?>' required>
+                                        <input class="input" type="email" name="newadressemail" value='<?php echo $utilisateur->adresseMail; ?>' placeholder="Adresse mail"required>
                                     </div>
                                 </div>
-                                <!--<div class="field">
-                                    <div class="control"> 
-                                        <input class="input" type="password" name="newmotdepasse"  value='<?php echo utf8_encode($utilisateur->motDePasse); ?>' required>
-                                    </div>
-                                </div>-->
                                 <div class="field">
                                     <div class="control">                                         
-                                        <input class="input" type="text" name="newnumerorue" value='<?php echo utf8_encode($utilisateur->numeroRue); ?>' required>
+                                        <input class="input" type="number" name="newnumerorue" value='<?php echo $utilisateur->numeroRue; ?>' placeholder="Numéro de rue" required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="text" name="newrue" value='<?php echo utf8_encode($utilisateur->rue); ?>' required>
+                                        <input class="input" type="text" name="newrue" value='<?php echo $utilisateur->rue; ?>'placeholder="Rue" required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="text" name="newville" value='<?php echo utf8_encode($utilisateur->ville); ?>' required>
+                                        <input class="input" type="text" name="newville" value='<?php echo $utilisateur->ville; ?>' placeholder="Ville"required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control"> 
-                                        <input class="input" type="text" name="newcodepostale" value='<?php echo utf8_encode($utilisateur->codePostale); ?>' required>
+                                        <input class="input" type="number" name="newcodepostale" value='<?php echo $utilisateur->codePostale; ?>' placeholder="Code postale"required>
                                         </div>
                                 </div>
                                 <div class="field">
@@ -288,7 +283,7 @@ if(isset($_SESSION['id'])){
                                         </select>
                                     </div>
                                 </div>
-                                <input type="submit" value="Envoyer">
+                                <input class="button is-primary" type="submit" value="Envoyer">
                             </form>
                         </div>
                     </article>
@@ -300,6 +295,11 @@ if(isset($_SESSION['id'])){
     else
     {         
 ?>
+    <div class="columns is-centered">
+        <div class="column has-text-centered is-5">
+            <h1 class="title is-2">Administration</h1>
+        </div>
+    </div>  
      <div class="columns is-centered">
         <div class="column has-text-centered is-5">
             <div class="select">
@@ -361,17 +361,17 @@ if(isset($_POST['formations'])){
             while ($prodUtilisateur) {
 ?>
                 <tr>
-                    <td><?php echo utf8_encode($prodUtilisateur->identifiant); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->adresseMail); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->nom); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->prenom); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->dateNaissance); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->numeroRue); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->rue); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->ville); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->codePostale); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->role); ?> </td>
-                    <td><?php echo utf8_encode($prodUtilisateur->id_formation); ?> </td>
+                    <td><?php echo $prodUtilisateur->identifiant; ?> </td>
+                    <td><?php echo $prodUtilisateur->adresseMail; ?> </td>
+                    <td><?php echo $prodUtilisateur->nom; ?> </td>
+                    <td><?php echo $prodUtilisateur->prenom; ?> </td>
+                    <td><?php echo $prodUtilisateur->dateNaissance; ?> </td>
+                    <td><?php echo $prodUtilisateur->numeroRue; ?> </td>
+                    <td><?php echo $prodUtilisateur->rue; ?> </td>
+                    <td><?php echo $prodUtilisateur->ville; ?> </td>
+                    <td><?php echo $prodUtilisateur->codePostale; ?> </td>
+                    <td><?php echo $prodUtilisateur->role; ?> </td>
+                    <td><?php echo $prodUtilisateur->id_formation; ?> </td>
                     <td><a href='admin.php?action=modifier&id=<?php echo $prodUtilisateur->id; ?>&idForm=<?php echo $prodUtilisateur->id_formation; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td>
                     <!--Icon pour modifier une ligne du tableau-->
                     <td><a href='admin_action.php?action=supprimer&id=<?php echo $prodUtilisateur->id; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></span></a></td>
@@ -393,9 +393,7 @@ if(isset($_POST['formations'])){
     <div class="container">               
         <div class="columns is-centered">
             <div class="column has-text-centered is-5">
-
-
-                <p class="title">Veuillez choisir une formation</p>    
+                <p class="title is-4">Veuillez choisir une formation</p>    
             </div>
         </div>
     <?php

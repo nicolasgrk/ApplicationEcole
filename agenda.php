@@ -14,7 +14,7 @@ if(isset($_SESSION['id'])){
 
 <head>
     <link rel="icon" type="image/png" href="img/logo.png" />
-    <title>Notes</title>
+    <title>Agenda</title>
     <meta charset="UTF-8">
     <meta name="description" content="...">
     <meta name="keywords" content="...">
@@ -48,8 +48,8 @@ if(isset($_SESSION['id'])){
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a href="note.php" class="button is-primary"><strong>Gestion note</strong></a>
-          <a href="agenda.php" class="button is-light">Gestion agenda</a>
+          <a href="note.php" class="button is-light">Gestion note</a>
+          <a href="agenda.php" class="button is-primary"><strong>Gestion agenda</strong></a>
           <a href="deconnexion.php" class="button is-light">Déconnexion</a>
 
         </div>
@@ -66,33 +66,54 @@ if(isset($_SESSION['id'])){
             include("include/_inc_parametres.php");
             include("include/_inc_connexion.php");
             // préparation de la requête : recherche d'un élèves particulier
-            $req_pre = $cnx->prepare("SELECT * FROM note WHERE id = :id");
+            $req_pre = $cnx->prepare("SELECT * FROM emploiDuTemps WHERE id = :id");
             // liaison de la variable à la requête préparée
             $req_pre->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
             $req_pre->execute();
             //le résultat est récupéré sous forme d'objet
-            $note=$req_pre->fetch(PDO::FETCH_OBJ);
+            $agenda=$req_pre->fetch(PDO::FETCH_OBJ);
 ?>
 
             <section class="section">
                 <div class="container">  
                     <div class="columns is-centered">
                         <div class="column has-text-centered is-5">
-                            <p>Sur cette page, vous pouvez modifier une note.</p>
+                            <p>Sur cette page, vous pouvez modifier un cours.</p>
                         </div>
                     </div>
                     <article class="columns is-centered">
                         <div class="column has-text-centered is-4">
-                            <form method="post" action="note_action.php?action=modifier" class="box"> <!--Formulaire pour modifier un joueur-->
-                                <input type="hidden" name="numero" value="<?php echo $note->id; ?>" />  <!-- numéro du note sélectionné caché -->
+                            <form method="post" action="agenda_action.php?action=modifier" class="box"> <!--Formulaire pour modifier un joueur-->
+                                <input type="hidden" name="numero" value="<?php echo $agenda->id; ?>" />  <!-- numéro du agenda sélectionné caché -->
+
                                 <div class="field">
+                                    <label class="label">Matière</label>
                                     <div class="control">
-                                        <input class="input" type="text" name="newmatiere" id="matiere" value='<?php echo utf8_encode($note->matiere); ?>' required readonly>
+                                    <input class="input"type="text" name="matiere" placeholder="Nom de la matière" value='<?php echo utf8_encode($agenda->matiere); ?>'required>
                                     </div>
                                 </div>
                                 <div class="field">
+                                    <label class="label">Salle</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Note" name="newNote" id="newNote" value='<?php echo utf8_encode($note->note); ?>' required> 
+                                    <input class="input" type="number" name="salle" placeholder="Salle" value='<?php echo utf8_encode($agenda->salle); ?>'required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Date</label>
+                                    <div class="control">
+                                    <input class="input" type="date" name="date" placeholder="Date" value='<?php echo utf8_encode($agenda->dates); ?>'required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Heure de début</label>
+                                    <div class="control">
+                                    <input class="input" type="time" name="heureDebut" placeholder="Heure de début"value='<?php echo utf8_encode($agenda->HeureDebut); ?>' required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Heure de fin</label>
+                                    <div class="control">
+                                    <input class="input" type="time" name="heureFin" placeholder="Heure de fin" value='<?php echo utf8_encode($agenda->HeureFin); ?>' required>
                                     </div>
                                 </div>
 
@@ -111,12 +132,12 @@ if(isset($_SESSION['id'])){
                 <div class="container">               
                     <div class="columns is-centered">
                         <div class="column has-text-centered is-5">
-                            <h1 class="title">Ajouter note</h1>    
+                            <h1 class="title">Ajouter cours</h1>    
                         </div>
                     </div>
                     <article class="columns is-centered">
                         <div class="column has-text-centered is-4">
-                            <form method="post" action="note_action.php?action=ajouter" enctype="multipart/form-data" class="box">
+                            <form method="post" action="agenda_action.php?action=ajouter" enctype="multipart/form-data" class="box">
                                 <div class="field">
                                     <label class="label">Matière</label>
                                     <div class="control">
@@ -124,21 +145,39 @@ if(isset($_SESSION['id'])){
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label class="label">Note</label>
+                                    <label class="label">Salle</label>
                                     <div class="control">
-                                    <input class="input" type="number" name="note" placeholder="Note" required>
+                                    <input class="input" type="number" name="salle" placeholder="Salle" required>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <label class="label">Étudiant</label>
+                                    <label class="label">Date</label>
+                                    <div class="control">
+                                    <input class="input" type="date" name="date" placeholder="Date" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Heure de début</label>
+                                    <div class="control">
+                                    <input class="input" type="time" name="heureDebut" placeholder="Heure de début" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Heure de fin</label>
+                                    <div class="control">
+                                    <input class="input" type="time" name="heureFin" placeholder="Heure de fin" required>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Formations</label>
                                     <div class="select is-rounded">
-                                        <select name="utilisateur" id="utilisateur">
-                                            <option value="">Choisir un étudiant</option>
+                                        <select name="formation" id="formation">
+                                            <option value="">Choisir une formations</option>
                 <?php  
-                                            $reponse = $cnx->query("SELECT nom, prenom, id FROM utilisateur where utilisateur.id_formation = ".$_GET['id']);
+                                            $reponse = $cnx->query("SELECT * FROM formation");
                                             while ($donnees = $reponse->fetch()){
                 ?>
-                                            <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['nom'];?> <?php echo $donnees['prenom'];?></option>
+                                            <option value="<?php echo $donnees['id'];?>"><?php echo $donnees['intituleFormation'];?></option>
                 <?php
                                             }
                                             $reponse->closeCursor();
@@ -160,13 +199,13 @@ if(isset($_SESSION['id'])){
 ?>
     <div class="columns is-centered">
         <div class="column has-text-centered is-5">
-            <h1 class="title is-2">Gestions des notes</h1>
+            <h1 class="title is-2">Agenda</h1>
         </div>
-    </div>
+    </div>        
     <div class="columns is-centered">
         <div class="column has-text-centered is-5">
             <div class="select">
-                <form method="post" action="note.php" enctype="multipart/form-data">
+                <form method="post" action="agenda.php" enctype="multipart/form-data">
                 <select name="formations" id="formations" onChange="this.form.submit();">
                     <option value="">Choisir une formations</option>
         <?php 
@@ -191,50 +230,52 @@ if(isset($_SESSION['id'])){
          
 <?php
             if(isset($_POST['formations'])){
-                            // affichage lors du clic sur notedans la page index.php
+                            // affichage lors du clic sur agendadans la page index.php
         include("include/_inc_parametres.php");
         include("include/_inc_connexion.php");
-        $noteEleve=$cnx->query("SELECT utilisateur.nom, utilisateur.prenom, matiere, note, utilisateur.id as idUtili, note.id as idNote FROM note, utilisateur where note.id_utilisateur = utilisateur.id and utilisateur.id_formation = ".$_POST['formations']); //Récupération de toute la table note avec nom et prenom
-        $noteEleve->setFetchMode(PDO::FETCH_OBJ);
+        $agendaEleve=$cnx->query("SELECT * FROM emploiDuTemps where formation = ".$_POST['formations']." and id_utilisateur =".$_SESSION['id'] ); //Récupération de toute la table agenda avec nom et prenom
+        $agendaEleve->setFetchMode(PDO::FETCH_OBJ);
 ?>
 
             <div class="columns is-centered">
-                <div class="column has-text-centered is-5">
-                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des notes. <a href="note.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter une note</a> </p>
+                <div class="column has-text-centered is-7">
+                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des cours. <a href="agenda.php?action=nouveau&id=<?php echo $_POST['formations']; ?>">Ajouter un cours</a> </p>
                 </div>
             </div>
 
 
         <article class="columns is-centered">
-        <div class="column has-text-centered is-4">
+        <div class="column has-text-centered is-6">
             
-        <table class="table">
+        <table class="table is-fullwidth" >
         <thead>
             <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
                 <th>Matière</th>
-                <th>Note</th>
+                <th>Salle</th>
+                <th>Date</th>
+                <th>Heure Début</th>
+                <th>Heure Fin</th>
                 <th>Modifier</th>
                 <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
 <?php 
-        $prodNote=$noteEleve->fetch();
-        while ($prodNote) {
+        $prodagenda=$agendaEleve->fetch();
+        while ($prodagenda) {
 ?>
             <tr>
-                <td><?php echo utf8_encode($prodNote->nom); ?></td>
-                <td><?php echo utf8_encode($prodNote->prenom); ?></td>
-                <td><?php echo utf8_encode($prodNote->matiere); ?></td>
-                <td><?php echo utf8_encode($prodNote->note); ?></td>
-                <td><a href='note.php?action=modifier&id=<?php echo $prodNote->idNote; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td><!--Icon pour modifier une ligne du tableau-->
-                <td><a href='note_action.php?action=supprimer&id=<?php echo $prodNote->idNote; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></a></td><!--Icon pour supprimer une ligne du tableau-->
+                <td><?php echo utf8_encode($prodagenda->matiere); ?></td>
+                <td><?php echo utf8_encode($prodagenda->salle); ?></td>
+                <td><?php echo utf8_encode($prodagenda->dates); ?></td>
+                <td><?php echo utf8_encode($prodagenda->HeureDebut); ?></td>
+                <td><?php echo utf8_encode($prodagenda->HeureFin); ?></td>
+                <td><a href='agenda.php?action=modifier&id=<?php echo $prodagenda->id; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td><!--Icon pour modifier une ligne du tableau-->
+                <td><a href='agenda_action.php?action=supprimer&id=<?php echo $prodagenda->id; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></a></td><!--Icon pour supprimer une ligne du tableau-->
             </tr>
 <?php 
-        // lecture de la note suivant
-        $prodNote=$noteEleve->fetch(); 
+        // lecture de la agenda suivant
+        $prodagenda=$agendaEleve->fetch(); 
         }
 ?>
         </tbody>
@@ -246,7 +287,7 @@ if(isset($_SESSION['id'])){
 
             <div class="columns is-centered">
                 <div class="column has-text-centered is-5">
-                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des notes.</p>
+                    <p>A partir de cette page, vous pouvez ajouter, modifier ou supprimer des cours.</p>
                 </div>
             </div>
                 <section class="section">
