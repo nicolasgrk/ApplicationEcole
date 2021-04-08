@@ -38,13 +38,14 @@ if (isset ($_GET['action']))
 
 		// préparation de la requête : pour ajouter les informations de la table
 
-		
+		$matiere= ucwords($_POST['matiere']);
+
 
 
 		$req_pre = $cnx->prepare("INSERT INTO emploiDuTemps (matiere, salle, dates, HeureDebut, HeureFin, formation, id_utilisateur)
 		VALUES ( :matiere, :salle, :datecours, :heureDebut, :heureFin, :idFormation, :id_utilisateur)");
 		//liaison de la variable à la requête préparée
-		$req_pre->bindValue(':matiere',$_POST['matiere'] , PDO::PARAM_STR);
+		$req_pre->bindValue(':matiere',$matiere , PDO::PARAM_STR);
         $req_pre->bindValue(':salle',$_POST['salle'], PDO::PARAM_INT);
         $req_pre->bindValue(':datecours',$_POST['date'], PDO::PARAM_STR);
         $req_pre->bindValue(':heureDebut',$_POST['heureDebut'] , PDO::PARAM_STR);

@@ -15,7 +15,7 @@ if(isset($_SESSION['id'])){
 
 <head>
     <link rel="icon" type="image/png" href="img/logo.png" />
-    <title>Informations de l'école
+    <title>Evènements de l'école
     </title>
     <meta charset="UTF-8">
     <meta name="description" content="...">
@@ -89,12 +89,12 @@ if(isset($_SESSION['id'])){
                                 <input type="hidden" name="numero" value="<?php echo $info->id; ?>" />  <!-- numéro du note sélectionné caché -->
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="text" name="newName" id="evenement" value='<?php echo utf8_encode($info->intituleEvenement); ?>' required>
+                                        <input class="input" type="text" name="newName" id="evenement" value='<?php echo $info->intituleEvenement; ?>' required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input" type="date" name="newDate" id="date" value='<?php echo utf8_encode($info->date); ?>' required> 
+                                        <input class="input" type="date" name="newDate" id="date" value='<?php echo $info->date; ?>' required> 
                                     </div>
                                 </div>
 
@@ -118,7 +118,7 @@ if(isset($_SESSION['id'])){
                 <div class="container">               
                     <div class="columns is-centered">
                         <div class="column has-text-centered is-5">
-                            <h1 class="title">Ajouter information</h1>    
+                            <h1 class="title">Ajouter un évènement</h1>    
                         </div>
                     </div>
                     <article class="columns is-centered">
@@ -150,7 +150,7 @@ if(isset($_SESSION['id'])){
 ?>
     <div class="columns is-centered">
         <div class="column has-text-centered is-5">
-            <h1 class="title is-2">Informations de l'école</h1>
+            <h1 class="title is-2">Évènement de l'école</h1>
         </div>
     </div>
         <div class="columns is-centered">
@@ -185,8 +185,8 @@ if(isset($_SESSION['id'])){
             while ($prodInfo) {
 ?>
                 <tr>
-                    <td><?php echo utf8_encode($prodInfo->intituleEvenement); ?></td>
-                    <td><?php echo utf8_encode($prodInfo->date); ?></td>
+                    <td><?php echo $prodInfo->intituleEvenement; ?></td>
+                    <td><?php echo $prodInfo->date; ?></td>
                     <td><a href='information_ecole.php?action=modifier&id=<?php echo $prodInfo->id; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td><!--Icon pour modifier une ligne du tableau-->
                     <td><a href='information_ecole_action.php?action=supprimer&id=<?php echo $prodInfo->id; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></a></td><!--Icon pour supprimer une ligne du tableau-->
                 </tr>

@@ -14,21 +14,23 @@ header( 'content-type: text/html; charset=utf-8' );
         <meta name="keywords" content="...">
         <meta name="author" content="Mahé Louis">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="css/styles.css">
         <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
         </script>       
     </head>
     <body>
         <article class="columns is-centered">
             <div class="column has-text-centered is-4">
+            <figure class="image" id="imgcnx">
+            <img src="img/logo.png">
+            </figure>
                 <form action="changementMDP_action.php" method="post">
-                    <h1>Nouveau mot de passe</h1>
                     <div class="field">
-                        <label id="" for="mdp1">Mot de passe</label>
+                        <label id="" for="mdp1">Nouveau mot de passe</label>
                         <input class="input" type="password" name="mdp1" placeholder="Votre mot de passe" required>
                     </div>
                     <div class="field">
-                        <label id="" for="mdp2">Confirmation du mot de passe</label>
+                        <label id="" for="mdp2">Confirmation du nouveau mot de passe</label>
                         <input class="input" type="password" name="mdp2" placeholder="Confirmation du mot de passe" required>
                     </div>
                     <input type="submit" value="Envoyer">      

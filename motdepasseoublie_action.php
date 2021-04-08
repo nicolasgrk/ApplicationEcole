@@ -22,12 +22,16 @@ if($_POST){
 		$email = "nicolasmaheesaip@gmail.com";
 		$name = "Appli école";
 		$object = "Voici votre mot de passe";
-		$message = "Bonjour
-					Nouveau mot de passe
-					voici votre nouveau mot de passe: ".$password."";
+
+
+
+					$message = '<html><body>';
+					$message .= '<h1>Bonjour</h1>';
+					$message .= '<p>Voici votre nouveau mot de passe:<strong> '.$password.'</strong></p>';
+					$message .= '</body></html>';		
 		
 		$headers = "MIME-Version: 1.0\r\n";
-		$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+		$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 		$headers .= "From: $name <$email>\r\nX-Mailer:PHP";
 		
 		$subject="Mot de passe";
@@ -36,7 +40,7 @@ if($_POST){
 		
 		if(mail($destinataire,$subject,$body,$headers)) {
 			echo 'Votre email est envoyé';
-			header('refresh:1; url=connexion.php');
+			header('refresh:1; url=index.php');
 		} else {
 			echo "Votre email ne s'est pas envoyé correctement";
 			header('refresh:1; url=motdepasseoublie.php');

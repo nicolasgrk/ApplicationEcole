@@ -11,8 +11,8 @@ if (isset ($_GET['action']))
 		$req_pre = $cnx->prepare("UPDATE infoEcole SET intituleEvenement=:evenement, date=:newDate
 								  WHERE id= :id ");
 		// liaison de la variable à la requête préparée
-        $req_pre->bindValue(':evenement', utf8_encode($_POST['newName']), PDO::PARAM_STR);
-        $req_pre->bindValue(':newDate', utf8_encode($_POST['newDate']), PDO::PARAM_STR);
+        $req_pre->bindValue(':evenement', $_POST['newName'], PDO::PARAM_STR);
+        $req_pre->bindValue(':newDate', $_POST['newDate'], PDO::PARAM_STR);
 		$req_pre->bindValue(':id', $_POST['numero'], PDO::PARAM_INT);
 		$req_pre->execute();
 
@@ -32,7 +32,7 @@ if (isset ($_GET['action']))
 		
 
 		// préparation de la requête : pour ajouter les informations de la table
-		$nomEvenement =$_POST['nomEvenement'];
+		$nomEvenement = ucwords($_POST['nomEvenement']);
 		$date=$_POST['date'];
 
 	
@@ -40,7 +40,7 @@ if (isset ($_GET['action']))
 		$req_pre = $cnx->prepare("INSERT INTO infoEcole (intituleEvenement, date)
 		VALUES ( :nomEvenement, :date)");
 		//liaison de la variable à la requête préparée
-		$req_pre->bindValue(':nomEvenement',$_POST['nomEvenement'] , PDO::PARAM_STR);
+		$req_pre->bindValue(':nomEvenement',$nomEvenement , PDO::PARAM_STR);
         $req_pre->bindValue(':date',$_POST['date'], PDO::PARAM_STR);
 		$req_pre->execute();
 		}

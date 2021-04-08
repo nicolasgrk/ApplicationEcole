@@ -5,13 +5,11 @@ if (isset ($_GET['action']))
 {
 	if ($_GET['action'] == 'modifier')//Si l'action est égale à modifier alors on fait:
 	{
-		//$mdp = password_hash($_POST['newmotdepasse'], PASSWORD_BCRYPT);
 
 		$addrmail=$cnx->query('SELECT count(*) as nbrAddr from utilisateur WHERE adresseMail= "'.$_POST['newadressemail'].'"');
 		while($donne = $addrmail->fetch()){
-			var_dump($donne);
 			if ($donne['nbrAddr'] >= 2){
-				echo "Adresse email existe déjà.\nVeuiller en saisir une autre";
+				echo "Adresse email existe déjà.\n Veuiller en saisir une autre";
 			}else{
 
 				// préparation de la requête : pour modifier les informations de la table  motDePasse=:motdepasse,
@@ -65,21 +63,29 @@ if (isset ($_GET['action']))
 		$addrmail=$cnx->query('SELECT count(*) as nbrAddr from utilisateur WHERE adresseMail= "'.$_POST['adressemail'].'"');
 		while($donne = $addrmail->fetch()){
 			if ($donne['nbrAddr'] >= 1){
-				echo "Adresse email existe déjà.\nVeuiller en saisir une autre";
+				echo "Adresse email existe déjà.\n Veuiller en saisir une autre";
 			}else{
-				
+				$nom= ucwords($_POST['nom']);
+				$prenom= ucwords($_POST['prenom']);
+				$rue= ucwords($_POST['rue']);
+				$ville= ucwords($_POST['ville']);
+				$prenomID= strtolower($_POST['prenom']);
+
+
+				$identifiant= substr($prenomID,0,1) . ".". $_POST['nom'];
+
 				$req_pre = $cnx->prepare("INSERT INTO utilisateur (identifiant, motDePasse, adresseMail, nom, prenom, dateNaissance, numeroRue, rue, ville, codePostale, id_formation, role) 
 				VALUES (:identifiant, :motdepasse, :adressemail, :nom, :prenom, :datedenaissance, :numerorue, :rue, :ville, :codepostale, :idformation, :role)");
 				// liaison de la variable à la requête préparée
-				$req_pre->bindValue(':identifiant', $_POST['identifiant'], PDO::PARAM_STR);
+				$req_pre->bindValue(':identifiant', $identifiant, PDO::PARAM_STR);
 				$req_pre->bindValue(':motdepasse', $mdp, PDO::PARAM_STR);
 				$req_pre->bindValue(':adressemail', $_POST['adressemail'], PDO::PARAM_STR);
-				$req_pre->bindValue(':nom', $_POST['nom'], PDO::PARAM_STR);
-				$req_pre->bindValue(':prenom', $_POST['prenom'], PDO::PARAM_STR);
+				$req_pre->bindValue(':nom', $nom, PDO::PARAM_STR);
+				$req_pre->bindValue(':prenom', $prenom, PDO::PARAM_STR);
 				$req_pre->bindValue(':datedenaissance', $_POST['datedenaissance'], PDO::PARAM_STR);
 				$req_pre->bindValue(':numerorue', $_POST['numerorue'], PDO::PARAM_INT);
-				$req_pre->bindValue(':rue', $_POST['rue'], PDO::PARAM_STR);
-				$req_pre->bindValue(':ville', $_POST['ville'], PDO::PARAM_STR);
+				$req_pre->bindValue(':rue', $rue, PDO::PARAM_STR);
+				$req_pre->bindValue(':ville', $ville, PDO::PARAM_STR);
 				$req_pre->bindValue(':codepostale', $_POST['codepostale'], PDO::PARAM_INT);
 				$req_pre->bindValue(':role', $_POST['role'], PDO::PARAM_INT);
 				$req_pre->bindValue(':idformation', $_POST['idformation'], PDO::PARAM_INT);
@@ -92,21 +98,27 @@ if (isset ($_GET['action']))
 				$name = "Appli école";
 				$object = "Voici votre mot de passe";
 				$message = "Bonjour
+								Votre identifiant est : ".$identifiant."
 								Nouveau mot de passe
 								voici votre nouveau mot de passe: ".$password."";
+
+
+					$message = '<html><body>';
+					$message .= '<h1>Bonjour</h1>';
+					$message .= '<p>Votre identifiant est : '.$identifiant.'</p><p>Voici votre mot de passe:<strong> '.$password.'</strong></p>';
+					$message .= '</body></html>';	
 				
 				$headers = "MIME-Version: 1.0\r\n";
-				$headers .= "Content-type: text/plain; charset=iso-8859-1\r\n";
+				$headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 				$headers .= "From: $name <$email>\r\nX-Mailer:PHP";
 				
 				$subject="Mot de passe";
 				$destinataire=$_POST['adressemail'];
 				$body="$message";
-				
 				if(mail($destinataire,$subject,$body,$headers)) {
-					echo 'your mail is sent';
+					echo 'Votre email est envoyer';
 				} else {
-					echo "email pas envoyer";
+					echo "Votre adresse e-mail n'a pas pu être envoyer";
 				}
 				
 				

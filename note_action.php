@@ -20,7 +20,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			<!-- <meta http-equiv="refresh" content="0 ; url=note.php">Rafraichissement/retour de la page joueur-->
+			 <meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>
@@ -35,13 +35,14 @@ if (isset ($_GET['action']))
 		$matiere =$_POST['matiere'];
 		$note=$_POST['note'];
 		
+		$matiere= ucwords($_POST['matiere']);
 
 	
 		for ($i = 0; $i <=0; $i++) {
 		$req_pre = $cnx->prepare("INSERT INTO note (matiere, note, id_utilisateur)
 		VALUES ( :matiere, :note, :id_utilisateur)");
 		//liaison de la variable à la requête préparée
-		$req_pre->bindValue(':matiere',$_POST['matiere'] , PDO::PARAM_STR);
+		$req_pre->bindValue(':matiere',$matiere , PDO::PARAM_STR);
         $req_pre->bindValue(':note',$_POST['note'], PDO::PARAM_STR);
         $req_pre->bindValue(':id_utilisateur',$_POST['utilisateur'], PDO::PARAM_INT);
 		$req_pre->execute();
@@ -50,7 +51,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			 <!-- <meta http-equiv="refresh" content="0 ;url=note.php"><!--Rafraichissement/retour de la page joueur-->
+			 <meta http-equiv="refresh" content="0 ;url=note.php"><!--Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>
@@ -72,7 +73,7 @@ if (isset ($_GET['action']))
 		?>
 		<html>
 		<head>
-			<!--<meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
+			<meta http-equiv="refresh" content="0 ; url=note.php"><!--Rafraichissement/retour de la page joueur-->
 		</head>
 		<body>
 		</body>

@@ -12,7 +12,7 @@ if(isset($_SESSION['id'])){
 
 <head>
     <link rel="icon" type="image/png" href="img/logo.png" />
-    <title>Utilisateurs
+    <title>Administrateur
     </title>
     <meta charset="UTF-8">
     <meta name="description" content="...">
@@ -22,6 +22,9 @@ if(isset($_SESSION['id'])){
     <link rel="stylesheet" href="style/style.css">
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'>
     </script>
+    <style type="text/css">
+
+    </style>
 </head>
 <!--head-->
 <!--body-->
@@ -45,8 +48,9 @@ if(isset($_SESSION['id'])){
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
+                    <a href="admin.php" class="button is-primary">Gestion utilisateurs</a>
+                    <a href="formation.php" class="button is-light"><strong>Gestion formations</strong></a>
                     <a href="deconnexion.php" class="button is-light">Déconnexion</a>
-
                 </div>
             </div>
         </div>
@@ -220,12 +224,8 @@ if(isset($_SESSION['id'])){
                         <div class="column has-text-centered is-4">
                             <form method="post" action="admin_action.php?action=ajouter" enctype="multipart/form-data" class="box">
                                 <div class="field">
-                                    <label id="" for="identifiant">Identifiant</label>
-                                    <input class="input" type="text" name="identifiant" placeholder="Votre identifiant" required>
-                                </div>
-                                <div class="field">
                                     <label id="" for="prenom">Prénom</label>
-                                    <input class="input" type="text" name="prenom" placeholder="Votre prénom" required>
+                                    <input class="input" type="text" name="prenom" placeholder="Votre prénom"  required>
                                 </div>
                                 <div class="field">
                                     <label id="" for="nom">Nom</label>
@@ -241,7 +241,7 @@ if(isset($_SESSION['id'])){
                                 </div>
                                 <div class="field">
                                     <label id="" for="numerorue">N°Rue</label>
-                                    <input class="input" type="text" name="numerorue" placeholder="Numéro de rue" required>
+                                    <input class="input" type="number" name="numerorue" placeholder="Numéro de rue" required>
                                 </div>
                                     <div class="field">
                                     <label id="" for="rue">Rue</label>
@@ -253,7 +253,7 @@ if(isset($_SESSION['id'])){
                                 </div>
                                 <div class="field">
                                     <label id="" for="codepostale">Code Postale</label>
-                                    <input class="input" type="text" name="codepostale" placeholder="Votre code postale" required>
+                                    <input class="input" type="number" name="codepostale" placeholder="Votre code postale"  required>
                                 </div>
                                 <div class="field">
                                     <div class="select is-rounded">

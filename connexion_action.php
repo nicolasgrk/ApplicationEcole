@@ -13,9 +13,6 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
         $mdp = $_POST['cnxMotdepasse']; 
 
 
-        
-        include("include/_inc_parametres.php");
-        include("include/_inc_connexion.php");
         /* on verifie qu'un membre a bien cet email et ce mot de passe*/
         $req = $cnx->prepare('SELECT * FROM utilisateur WHERE identifiant = :identifiant');
         $req->execute(array('identifiant'=> $_POST['cnxId']));
@@ -26,7 +23,7 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
         /*s'il n'y a pas de resultat, on renvoie a la page de connexion*/
         if(!$resultat || password_verify($mdp, $resultat['motDePasse'])== false)
         {
-            header('refresh:1; url=connexion.php');
+            header('refresh:1; url=index.php');
             ?>
            
             <div class="alert alert-danger">
@@ -83,7 +80,7 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
         }
     }
     else {
-            header('refresh:1; url=connexion.php');
+            header('refresh:1; url=index.php');
             //ob_flush();
         ?>
         <div class="alert alert-danger">
@@ -94,7 +91,7 @@ if(isset($_POST['cnxId']) && isset($_POST['cnxMotdepasse']))
 }
 else
 {
-    header('refresh:1; url=connexion.php');
+    header('refresh:1; url=index.php');
     //ob_flush();
     ?>
     <div class="alert alert-danger">

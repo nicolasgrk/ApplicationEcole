@@ -89,31 +89,31 @@ if(isset($_SESSION['id'])){
                                 <div class="field">
                                     <label class="label">Matière</label>
                                     <div class="control">
-                                    <input class="input"type="text" name="matiere" placeholder="Nom de la matière" value='<?php echo utf8_encode($agenda->matiere); ?>'required>
+                                    <input class="input"type="text" name="matiere" placeholder="Nom de la matière" value='<?php echo $agenda->matiere; ?>'required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label class="label">Salle</label>
                                     <div class="control">
-                                    <input class="input" type="number" name="salle" placeholder="Salle" value='<?php echo utf8_encode($agenda->salle); ?>'required>
+                                    <input class="input" type="number" name="salle" placeholder="Salle" value='<?php echo $agenda->salle; ?>'required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label class="label">Date</label>
                                     <div class="control">
-                                    <input class="input" type="date" name="date" placeholder="Date" value='<?php echo utf8_encode($agenda->dates); ?>'required>
+                                    <input class="input" type="date" name="date" placeholder="Date" value='<?php echo $agenda->dates; ?>'required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label class="label">Heure de début</label>
                                     <div class="control">
-                                    <input class="input" type="time" name="heureDebut" placeholder="Heure de début"value='<?php echo utf8_encode($agenda->HeureDebut); ?>' required>
+                                    <input class="input" type="time" name="heureDebut" placeholder="Heure de début"value='<?php echo $agenda->HeureDebut; ?>' required>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <label class="label">Heure de fin</label>
                                     <div class="control">
-                                    <input class="input" type="time" name="heureFin" placeholder="Heure de fin" value='<?php echo utf8_encode($agenda->HeureFin); ?>' required>
+                                    <input class="input" type="time" name="heureFin" placeholder="Heure de fin" value='<?php echo $agenda->HeureFin; ?>' required>
                                     </div>
                                 </div>
 
@@ -265,11 +265,11 @@ if(isset($_SESSION['id'])){
         while ($prodagenda) {
 ?>
             <tr>
-                <td><?php echo utf8_encode($prodagenda->matiere); ?></td>
-                <td><?php echo utf8_encode($prodagenda->salle); ?></td>
-                <td><?php echo utf8_encode($prodagenda->dates); ?></td>
-                <td><?php echo utf8_encode($prodagenda->HeureDebut); ?></td>
-                <td><?php echo utf8_encode($prodagenda->HeureFin); ?></td>
+                <td><?php echo $prodagenda->matiere; ?></td>
+                <td><?php echo $prodagenda->salle; ?></td>
+                <td><?php echo $prodagenda->dates; ?></td>
+                <td><?php echo $prodagenda->HeureDebut; ?></td>
+                <td><?php echo $prodagenda->HeureFin; ?></td>
                 <td><a href='agenda.php?action=modifier&id=<?php echo $prodagenda->id; ?>'><img src="https://img.icons8.com/color/30/000000/edit.png"></a></td><!--Icon pour modifier une ligne du tableau-->
                 <td><a href='agenda_action.php?action=supprimer&id=<?php echo $prodagenda->id; ?>'><img src="https://img.icons8.com/color/30/000000/delete-sign.png"></a></td><!--Icon pour supprimer une ligne du tableau-->
             </tr>
