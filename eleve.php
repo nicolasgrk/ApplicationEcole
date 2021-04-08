@@ -88,7 +88,7 @@ if(isset($_SESSION['id'])){
                                     while ($prodInfo) {
                                         $dateMySQL = ($prodInfo->dateEvnt);
                                         setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);   
-                                        ?><p class="subtitle"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> <?php echo strftime("%A %d %B %Y",strtotime($dateMySQL)); ?> </p><?php
+                                        ?><p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> <?php echo strftime("%A %d %B %Y",strtotime($dateMySQL)); ?> </p><?php
                                         $prodInfo=$infoEcole->fetch(); 
                                     }
                             ?>
@@ -98,7 +98,7 @@ if(isset($_SESSION['id'])){
                         <article class="tile is-child notification is-warning" id="1">
                         <h2 class="subtitle is-4 has-text-centered has-text-black">Emploi du temps</h2>
 
-                        <table class="table" id="open_modal">
+                        <table class="table is-striped  is-fullwidth" id="open_modal">
                             <tr>
                                 <td>Jour</td>
                                 <td>Heure</td>
@@ -139,7 +139,7 @@ if(isset($_SESSION['id'])){
                                     <button class="delete" aria-label="close" id="close_modal"></button>
                                     </header>
                                     <section class="modal-card-body">
-                                    <table class="table">
+                                    <table class="table is-striped is-hoverable  is-fullwidth">
                                         <tr>
                                             <td>Jour</td>
                                             <td>Heure</td>
@@ -183,8 +183,8 @@ if(isset($_SESSION['id'])){
                     
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-info" id="1">
-                        <h2 class="subtitle is-4 has-text-centered ">Conversation</h2>
-                        <p id="open_modal2">Ouvrir la conv</p>
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Conversation</h2>
+                        <p class= "subtitle  has-text-black has-text-centered" id="open_modal2">Ouvrir la conversation</p>
                         <div class="modal" id="modal_to_open2">
                             <div class="modal-background"></div>
                                 <div class="modal-content">
@@ -235,7 +235,7 @@ if(isset($_SESSION['id'])){
                                 while ($prodInfo) {
                                     $dateMySQL = ($prodInfo->dateEvnt);
                                     setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);
-                                    ?><p class="subtitle"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> <?php echo strftime("%A %d %B %Y",strtotime($dateMySQL));?> </p><?php
+                                    ?><p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->intituleEvenement); ?> <?php echo strftime("%A %d %B %Y",strtotime($dateMySQL));?> </p><?php
                                     $prodInfo=$infoEcole->fetch(); 
                                 }
                             ?>
@@ -249,7 +249,7 @@ if(isset($_SESSION['id'])){
                                 $infoEcole->setFetchMode(PDO::FETCH_OBJ);
                                 $prodInfo=$infoEcole->fetch();
                                 while ($prodInfo) {
-                                    ?><p class="subtitle"><?php echo utf8_encode($prodInfo->matiere); ?>: <strong class="has-text-right"><?php echo utf8_encode($prodInfo->note); ?> </strong></p><?php
+                                    ?><p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->matiere); ?>: <strong class="has-text-right"><?php echo utf8_encode($prodInfo->note); ?> </strong></p><?php
                                     $prodInfo=$infoEcole->fetch(); 
                                 }
                                 
@@ -259,7 +259,7 @@ if(isset($_SESSION['id'])){
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-info" id="1">
-                        <h2 class="subtitle is-4 has-text-centered has-text-black">Information perso</h2>
+                        <h2 class="subtitle is-4 has-text-centered has-text-black">Information personnelle</h2>
                         <?php 
                                 $infoEcole=$cnx->query('SELECT * from utilisateur where id='.$_SESSION['id']); //Récupération de toute la table note avec nom et prenom
                                 $infoEcole->setFetchMode(PDO::FETCH_OBJ);
@@ -269,29 +269,29 @@ if(isset($_SESSION['id'])){
 
                                                 <div class="columns">
                                                     <div class="column">
-                                                        <p class="subtitle"><?php echo utf8_encode($prodInfo->nom); ?> <?php echo utf8_encode($prodInfo->prenom); ?></p>
+                                                        <p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->nom); ?> <?php echo utf8_encode($prodInfo->prenom); ?></p>
                                                     </div>
                                                     <div class="column">
                                                     <?php $dateMySQL = ($prodInfo->dateNaissance);
                                                     setlocale(LC_TIME, ['fr', 'fra', 'fr_FR']);?>
-                                                    <p class="subtitle"><?php  echo strftime("%d %B %Y",strtotime($dateMySQL)); ?></p>
+                                                    <p class="subtitle has-text-black"><?php  echo strftime("%d %B %Y",strtotime($dateMySQL)); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="columns">
                                                     <div class="column is-one-third">
-                                                        <p class="subtitle"><?php echo utf8_encode($prodInfo->identifiant); ?></p>
+                                                        <p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->identifiant); ?></p>
                                                     </div>
                                                     <div class="column">
-                                                    <p class="subtitle"><?php echo utf8_encode($prodInfo->adresseMail); ?></p>
+                                                    <p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->adresseMail); ?></p>
                                                     </div>
                                                 </div>
                                                 <div class="columns">
                                                     <div class="column is-one-third">
-                                                        <p class="subtitle">Adresse:</p>
+                                                        <p class="subtitle has-text-black">Adresse:</p>
                                                     </div>
                                                     <div class="column">
-                                                    <p class="subtitle"><?php echo utf8_encode($prodInfo->numeroRue); ?> <?php echo utf8_encode($prodInfo->rue); ?> </p>
-                                                    <p class="subtitle"><?php echo utf8_encode($prodInfo->codePostale); ?> <?php echo utf8_encode($prodInfo->ville); ?></p>
+                                                    <p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->numeroRue); ?> <?php echo utf8_encode($prodInfo->rue); ?> </p>
+                                                    <p class="subtitle has-text-black"><?php echo utf8_encode($prodInfo->codePostale); ?> <?php echo utf8_encode($prodInfo->ville); ?></p>
                                                     </div>
                                                 </div>
                                     

@@ -49,7 +49,7 @@ if(isset($_SESSION['id'])){
       <div class="navbar-item">
         <div class="buttons">
           <a href="information_ecole.php" class="button is-light">Gestion évenements</a>
-          <a href="agenda2.php" class="button is-primary"><strong>Gestion agenda2</strong></a>
+          <a href="agenda2.php" class="button is-primary"><strong>Gestion agenda</strong></a>
           <a href="deconnexion.php" class="button is-light">Déconnexion</a>
 
         </div>
